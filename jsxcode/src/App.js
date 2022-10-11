@@ -1,9 +1,11 @@
 import "./App.css"
+import React from "react"
+import NavBar from "./NavBar"
 
 function App() {
     return (
         <>
-            <nav class="nav nav-top top-layer">
+            {/* <nav class="nav nav-top top-layer">
                 <div class="top-layer logo">Bilby AI</div>
                 <ul class="nav-list">
                     <li>
@@ -22,7 +24,8 @@ function App() {
                         <a href="/#">Newsletters</a>
                     </li>
                 </ul>
-            </nav>
+            </nav> */}
+            <NavBar />
             <form class="search-form top-layer">
                 <label class="search-bar-label" for="name">
                     Bilby AI Search
