@@ -1,0 +1,155 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --search-bar-height: 35px;
+    --large-font-size: 1.2rem;
+    --very-large-font-size: 1.4rem;
+    --result-card-width: min(70%, 500px);
+}
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.background {
+    margin: 0;
+    color: white;
+    z-index: 1;
+    position: relative; 
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: black;
+}
+
+.background::before {
+    content: "";
+    background-image: url("img/hong-kong-5.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.5;
+}
+
+.top-layer {
+    position: relative;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: .7rem 1rem;
+}
+
+.nav-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+.nav-list {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style-type: none;
+}
+
+.nav-list a {
+    color: white;
+    text-decoration: none;
+    font-size: var(--large-font-size);
+    font-weight: 400;
+    margin: 0 1rem;
+}
+
+.search-form {
+    margin-top: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.search-bar-label {
+    font-size: var(--very-large-font-size);
+    font-weight: 400;
+    margin-bottom: .5rem;
+}
+
+.search-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-input, .search-btn {
+    border: none;
+    margin: 10px 0;
+    height: var(--search-bar-height);
+}
+
+.search-btn {
+    width: calc(var(--search-bar-height) * 1.2);
+}
+
+.basic-search-btn {
+    background-color: black;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.adv-search-btn {
+    background-color: black;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.search-btn span.icon {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.search-btn span.basic-icon {
+    background-image: url("img/search-icon-white-2.svg");
+    background-size: 60%;
+}
+
+.search-btn span.adv-icon {
+    background-image: url("https://img.icons8.com/ios/50/FFFFFF/sorting-options--v1.png");
+    background-size: 60%;
+}
+
+.search-input {
+    color: black;
+    background-color: #ddd;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    font-weight: 400;
+    width: min(500px, 70vw);
+}
+
+.search-input:hover, .search-input:focus {
+    border: none;
+    outline: none;
+}
