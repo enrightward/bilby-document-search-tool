@@ -1,11 +1,12 @@
 import React, { Component } from "react"
+import "./styles.css"
 
-export default class NavBar extends Component {
+export class NavBar extends Component {
     render() {
         return (
-            <nav class="nav nav-top top-layer">
-                <div class="top-layer logo">Bilby AI</div>
-                <ul class="nav-list">
+            <nav className="nav nav-top top-layer">
+                <div className="nav-logo top-layer">Bilby AI</div>
+                <ul className="nav-list">
                     <li>
                         <a href="/#">About</a>
                     </li>
