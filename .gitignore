@@ -1,0 +1,29 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+/htmlcss/img/
+/bootstrapfirstdraft
+
+# dependencies
+/jsxcode/node_modules
+/jsxcode/.pnp
+/jsxcode/.pnp.js
+
+/jsxcode/package-lock.json
+/jsxcode/src/img/
+
+# testing
+/jsxcode/coverage
+
+# production
+/jsxcode/build
+
+# misc
+/jsxcode/.DS_Store
+/jsxcode/.env.local
+/jsxcode/.env.development.local
+/jsxcode/.env.test.local
+/jsxcode/.env.production.local
+
+/jsxcode/npm-debug.log*
+/jsxcode/yarn-debug.log*
+/jsxcode/yarn-error.log*
