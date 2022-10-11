@@ -3,7 +3,6 @@
 }
 
 :root {
-    --search-bar-height: 35px;
     --large-font-size: 1.2rem;
     --very-large-font-size: 1.4rem;
     --result-card-width: min(70%, 500px);
