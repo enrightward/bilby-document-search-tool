@@ -5,22 +5,25 @@ import "./navbar-styles.css"
 export function NavBar() {
     return (
         <nav className="nav nav-top top-layer">
-            <div className="nav-logo top-layer">Bilby AI</div>
+            {/* <div className="nav-logo top-layer">Bilby AI</div> */}
+            <a href="/" className="nav-logo top-layer">
+                Bilby AI
+            </a>
             <ul className="nav-list">
                 <li>
-                    <a href="/#">About</a>
+                    <a href="/about">About</a>
                 </li>
                 <li>
-                    <a href="/#">Sign Up</a>
+                    <a href="/signup">Sign Up</a>
                 </li>
                 <li>
-                    <a href="/#">Datasets</a>
+                    <a href="/datasets">Datasets</a>
                 </li>
                 <li>
-                    <a href="/#">Models</a>
+                    <a href="/models">Models</a>
                 </li>
                 <li>
-                    <a href="/#">Newsletters</a>
+                    <a href="/newsletters">Newsletters</a>
                 </li>
             </ul>
         </nav>
