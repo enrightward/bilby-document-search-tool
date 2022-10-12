@@ -5,7 +5,7 @@
 :root {
     --large-font-size: 1.2rem;
     --very-large-font-size: 1.4rem;
-    --result-card-width: min(70%, 500px);
+    /* --result-card-width: min(70%, 500px); */
 }
 
 body {
