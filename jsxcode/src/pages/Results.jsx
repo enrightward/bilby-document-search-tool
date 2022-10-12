@@ -1,18 +1,17 @@
 import React from "react"
 import { useLocation } from "react-router-dom"
 
-export default function About() {
+export default function Results() {
     const location = useLocation()
 
     return (
         <div>
-            <h1>About</h1>
+            <h1>Search Results</h1>
             <p>
-                Bilby AI is a platform for creating and sharing machine learning
-                models. It is a work in progress. 
+                This page will display search results.
             </p>
             <p>
-                THE STATE IS: {location.state.name}
+                THE STATE IS: {location.state.searchTerm}
             </p>
             <p>
                 Bilby AI is a project of{" "}

@@ -1,19 +1,22 @@
-import React, { useState } from "react"
 import "./searchbar-styles.css"
+import React, { useState } from "react"
+import { useNavigate } from "react-router-dom"
+
 var searchData = require("./MOCK_DATA.json")
-const searchLimit = 10
+const searchLimit = 15
 
 export default function SearchBar() {
     const [value, setValue] = useState("")
+    const navigate = useNavigate()
 
     const onChange = (event) => {
         setValue(event.target.value)
     }
 
-    const onBasicSearch = (event, searchTerm) => {
-        // API fetches search result.
-        setValue(searchTerm)
+    const onBasicSearch = (searchTerm) => {
         console.log("searchTerm", searchTerm)
+        setValue(searchTerm)
+        navigate("/results", { state: { searchTerm: searchTerm }})
     }
 
     return (
@@ -24,7 +27,7 @@ export default function SearchBar() {
             <div className="search-bar">
                 <button
                     className="search-btn basic-search-btn"
-                    onClick={(event) => onBasicSearch(event, value)}
+                    onClick={() => onBasicSearch(value)}
                 >
                     <span className="icon basic-icon"></span>
                 </button>
@@ -50,7 +53,7 @@ export default function SearchBar() {
                 .map((item) => (
                     <div 
                         className="dropdown-row"
-                        onClick={(event) => onBasicSearch(event, item.full_name)}
+                        onClick={() => {setValue(item.full_name)}}
                         key={item.full_name}
                     >
                         {item.full_name}

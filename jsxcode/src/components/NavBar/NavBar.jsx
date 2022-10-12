@@ -1,17 +1,17 @@
-// import React, { useState } from "react"
-import { Link, useMatch, useResolvedPath } from "react-router-dom"
 import React from "react"
 import "./navbar-styles.css"
+import { Link, useMatch, useResolvedPath } from "react-router-dom"
 
 export default function NavBar() {
+    const myState = { name: "Dinosaur" }
+
     return (
-        // <nav className="nav nav-top top-layer">
         <nav className="nav top-layer">
             <Link to="/" className="nav-logo top-layer">
                 Bilby AI
             </Link>
             <ul className="nav-list">
-                <CustomLink to="/about">About</CustomLink>
+                <CustomLink to="/about" state={myState}>About</CustomLink>
                 <CustomLink to="/signup">Sign Up</CustomLink>
                 <CustomLink to="/datasets">Datasets</CustomLink>
                 <CustomLink to="/models">Models</CustomLink>
