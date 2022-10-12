@@ -1,8 +1,10 @@
-export default function Datasets() {
+import React from "react"
+
+export default function Models() {
     return (
         <div>
-            <h1>Datasets</h1>
-            <p>Here you can manage public and personal datasets.</p>
+            <h1>Models</h1>
+            <p>Train, load, deploy and manage models.</p>
             <p>
                 Bilby AI is a project of{" "}
                 <a href="https://www.bilby.ai">Bilby AI Pty Ltd</a>.

@@ -1,10 +1,12 @@
-export default function Newsletters() {
+import React from "react"
+
+export default function About() {
     return (
         <div>
-            <h1>Newsletters</h1>
+            <h1>About</h1>
             <p>
-                Draft customised newsletters, and create templates to regularly
-                send out automated newsletters on particular themes.
+                Bilby AI is a platform for creating and sharing machine learning
+                models. It is a work in progress.
             </p>
             <p>
                 Bilby AI is a project of{" "}

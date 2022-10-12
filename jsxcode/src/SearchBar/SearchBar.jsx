@@ -1,14 +1,9 @@
 import React, { useState } from "react"
 import "./searchbar-styles.css"
-
-// export function SearchBar() {
-//     return (<></>)
-// }
-
 var searchData = require("./MOCK_DATA.json")
 const searchLimit = 10
 
-export function SearchBar() {
+export default function SearchBar() {
     const [value, setValue] = useState("")
 
     const onChange = (event) => {
