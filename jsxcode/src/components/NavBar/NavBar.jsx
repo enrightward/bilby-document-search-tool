@@ -6,7 +6,7 @@ export default function NavBar() {
     const myState = { name: "Dinosaur" }
 
     return (
-        <nav className="nav top-layer">
+        <nav className="nav nav-top">
             <Link to="/" className="nav-logo top-layer">
                 Bilby AI
             </Link>

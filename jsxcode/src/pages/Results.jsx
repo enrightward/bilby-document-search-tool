@@ -5,13 +5,12 @@ import ResultCard from "../components/ResultCard/ResultCard.jsx"
 export default function Results() {
     const location = useLocation()
     const searchTerm = location.state.searchTerm
+    const numrows = 10
+    const cards = []
 
-    return (
-        <>
-            <ResultCard searchTerm={searchTerm} />
-            <ResultCard searchTerm={searchTerm} />
-            <ResultCard searchTerm={searchTerm} />
-            <ResultCard searchTerm={searchTerm} />
-        </>
-    )
+    for (let i = 0; i < numrows; i++) {
+        cards.push(<ResultCard searchTerm={searchTerm} key={i} />)
+    }
+    
+    return <>{cards}</>
 }

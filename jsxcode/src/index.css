@@ -5,7 +5,6 @@
 :root {
     --large-font-size: 1.2rem;
     --very-large-font-size: 1.4rem;
-    /* --result-card-width: min(70%, 500px); */
 }
 
 body {
@@ -18,7 +17,7 @@ body {
     color: white;
     z-index: 1;
     position: relative; 
-    height: 100vh;
+    height: 200vh;
     width: 100vw;
     display: flex;
     flex-direction: column;
