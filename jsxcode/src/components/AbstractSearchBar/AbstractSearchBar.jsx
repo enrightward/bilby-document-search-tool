@@ -1,8 +1,7 @@
-import "./searchbar-styles.css"
+
 import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
-
-var searchData = require("./MOCK_DATA.json")
+var searchData = require("../../data/MOCK_DATA.json")
 const searchLimit = 15
 
 export default function SearchBar() {
@@ -16,14 +15,11 @@ export default function SearchBar() {
     const onBasicSearch = (searchTerm) => {
         console.log("searchTerm", searchTerm)
         setValue(searchTerm)
-        navigate("/results", { state: { searchTerm: searchTerm }})
+        navigate("/results", { state: { searchTerm: searchTerm } })
     }
 
     return (
-        <div className="search-area top-layer">
-            <label className="search-bar-label" htmlFor="name">
-                Bilby AI Search
-            </label>
+        <>
             <div className="search-bar">
                 <button
                     className="search-btn basic-search-btn"
@@ -60,6 +56,6 @@ export default function SearchBar() {
                     </div>
                 ))}
             </div>
-        </div>
+        </>
     )
 }

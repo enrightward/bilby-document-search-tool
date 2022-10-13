@@ -1,8 +1,8 @@
 import React from "react"
-import "./App.css"
+import "./app-styles.css"
 
 import NavBar from "../NavBar/NavBar.jsx"
-import SearchBar from "../SearchBar/SearchBar.jsx"
+import MainSearchBar from "../MainSearchBar/MainSearchBar.jsx"
 import About from "../../pages/About.jsx"
 import SignUp from "../../pages/SignUp.jsx"
 import Datasets from "../../pages/Datasets.jsx"
@@ -17,7 +17,7 @@ export default function App() {
             <NavBar />
             <div className="container top-layer">
                 <Routes>
-                    <Route path="/" element={<SearchBar/>}/>
+                    <Route path="/" element={<MainSearchBar/>}/>
                     <Route path="/about" element={<About/>}/>
                     <Route path="/signup" element={<SignUp/>}/>
                     <Route path="/datasets" element={<Datasets/>}/>
