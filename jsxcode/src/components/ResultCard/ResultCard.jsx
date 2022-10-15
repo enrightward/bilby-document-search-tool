@@ -1,5 +1,5 @@
 import React from "react"
-import "./result-card-styles.css"
+// import "./result-card-styles.css"
 
 export default function ResultCard({searchTerm}) {
 

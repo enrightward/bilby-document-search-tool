@@ -1,7 +1,11 @@
 import React from "react"
 import AbstractSearchBar from "../AbstractSearchBar/AbstractSearchBar.jsx"
-import "./result-searchbar-styles.css"
+// import "./result-searchbar-styles.css"
 
 export default function ResultSearchBar() {
-    return <AbstractSearchBar/>
+    return (
+        <div className="results-search-area top-layer">
+            <AbstractSearchBar classNamePrefix="results-"/>
+        </div>
+    )
 }

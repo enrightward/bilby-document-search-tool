@@ -2,7 +2,7 @@ import React from "react"
 
 export default function Newsletters() {
     return (
-        <div>
+        <div className="nav-page newsletters-page top-layer">
             <h1>Newsletters</h1>
             <p>
                 Draft customised newsletters, and create templates to regularly

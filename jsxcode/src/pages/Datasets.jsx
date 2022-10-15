@@ -2,7 +2,7 @@ import React from "react"
 
 export default function Datasets() {
     return (
-        <div>
+        <div className="nav-page datasets-page top-layer">
             <h1>Datasets</h1>
             <p>Here you can manage public and personal datasets.</p>
             <p>

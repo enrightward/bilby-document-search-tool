@@ -2,7 +2,7 @@ import React from "react"
 
 export default function Models() {
     return (
-        <div>
+        <div className="nav-page models-page top-layer">
             <h1>Models</h1>
             <p>Train, load, deploy and manage models.</p>
             <p>

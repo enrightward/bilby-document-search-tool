@@ -2,7 +2,7 @@ import React from "react"
 
 export default function SignUp() {
     return (
-        <div>
+        <div className="nav-page signup-page top-layer">
             <h1>Sign up to Bilby</h1>
             <p>Sign up to Bilby today.</p>
             <p>

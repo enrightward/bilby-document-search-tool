@@ -1,22 +1,24 @@
 import React from "react"
-import "./navbar-styles.css"
+// import "./navbar-styles.css"
 import { Link, useMatch, useResolvedPath } from "react-router-dom"
 
 export default function NavBar() {
     const myState = { name: "Dinosaur" }
 
     return (
-        <nav className="nav nav-top">
-            <Link to="/" className="nav-logo top-layer">
+        <nav className="nav top-layer">   
+            <Link to="/" className="nav-logo">
                 Bilby AI
             </Link>
-            <ul className="nav-list">
-                <CustomLink to="/about" state={myState}>About</CustomLink>
-                <CustomLink to="/signup">Sign Up</CustomLink>
-                <CustomLink to="/datasets">Datasets</CustomLink>
-                <CustomLink to="/models">Models</CustomLink>
-                <CustomLink to="/newsletters">Newsletters</CustomLink>
-            </ul>
+            <div className="nav-links-div">
+                <ul className="nav-links-ul">
+                    <CustomLink to="/about" state={myState}>About</CustomLink>
+                    <CustomLink to="/signup">Sign Up</CustomLink>
+                    <CustomLink to="/datasets">Datasets</CustomLink>
+                    <CustomLink to="/models">Models</CustomLink>
+                    <CustomLink to="/newsletters">Newsletters</CustomLink>
+                </ul>
+            </div>
         </nav>
     )
 }

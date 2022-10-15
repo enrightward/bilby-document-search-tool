@@ -1,5 +1,5 @@
 import React from "react"
-import "./app-styles.css"
+// import "./app-styles.css"
 
 import NavBar from "../NavBar/NavBar.jsx"
 import MainSearchBar from "../MainSearchBar/MainSearchBar.jsx"
@@ -11,11 +11,12 @@ import Newsletters from "../../pages/Newsletters.jsx"
 import Results from "../../pages/Results.jsx"
 import { Route, Routes } from "react-router-dom"
 
+
 export default function App() {
     return (
         <>
             <NavBar />
-            <div className="container top-layer">
+            <div className="main-panel top-layer">
                 <Routes>
                     <Route path="/" element={<MainSearchBar/>}/>
                     <Route path="/about" element={<About/>}/>

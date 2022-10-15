@@ -5,7 +5,7 @@ export default function About() {
     const location = useLocation()
 
     return (
-        <div>
+        <div className="nav-page about-page top-layer">
             <h1>About</h1>
             <p>
                 Bilby AI is a platform for creating and sharing machine learning
