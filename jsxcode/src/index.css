@@ -250,6 +250,7 @@
 .results-col, .doc-reader-col, .statistics-col {
     height: 100%;
     display: flex;
+    flex: 1;
     min-width: var(--min-triptych-column-width);
     flex-direction: column;
     justify-content: flex-start;
