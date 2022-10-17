@@ -1,12 +1,15 @@
 import React from "react"
 // import "./result-card-styles.css"
 
-export default function ResultCard({searchTerm}) {
+import BiToggle from "../BiToggle/BiToggle.jsx"
+
+export default function ResultCard({searchTerm, key}) {
 
     return (
         <div className="result-card top-layer">
             <div className="result-card-header">
                 <h5 className="result-card-url">https://people.cn</h5>
+                <BiToggle className="bitoggle" key={key}/>
             </div>
             <div className="result-card-body">
                 <div className="result-card-body-en">

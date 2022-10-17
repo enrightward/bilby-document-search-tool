@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg"
+   fill-rule="evenodd"
+   xml:space="preserve"
+   height="150"
+   width="475"
+   version="1.0"
+   stroke-miterlimit="10"
+   viewbox="0 0 64 20"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="Translation_Latin_Alphabet.svg"><defs
+   id="defs3003" /><sodipodi:namedview
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1"
+   objecttolerance="10"
+   gridtolerance="10"
+   guidetolerance="10"
+   inkscape:pageopacity="0"
+   inkscape:pageshadow="2"
+   inkscape:window-width="1366"
+   inkscape:window-height="706"
+   id="namedview3001"
+   showgrid="false"
+   inkscape:zoom="1.2694737"
+   inkscape:cx="415.79234"
+   inkscape:cy="68.890535"
+   inkscape:window-x="-8"
+   inkscape:window-y="-8"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="svg" /><metadata
+   id="metadata3009"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata>
+	<g
+   id="textshapes"
+   transform="matrix(9.6774,0,0,10,0,-15)">
+		<path
+   id="LatinA"
+   d="M 6.75,2 1.625,14 c -0.375,0.75 -0.75,1 -1.25,1 H 0 v 1 H 4.75 V 15 H 3.625 C 3.125,15 2.875,14.875 2.875,14.625 2.875,14.375 3,14 3,14 L 3.75,12.25 H 9.5 L 10.25,14 c 0,0 0.125,0.375 0.125,0.625 0,0.25 -0.125,0.375 -0.5,0.375 H 9.5 v 1 h 6 V 15 H 15 c -0.375,0 -0.75,-0.5 -1.25,-1.5 L 8.75,2 h -2 z M 6.625,5.5 9,11 H 4.25 L 6.625,5.5 z"
+   inkscape:connector-curvature="0"
+   style="fill:#333333" />
+	</g>
+<path
+   id="path2466"
+   fill="#9932cc"
+   d="m151 104.19h103.77l-0.19 45.81 48.21-37.14 48.21-37.152-47.9-37.844-47.93-37.864-0.16634 44.538h-104v59.657z" /><g
+   style="font-size:35.32165527px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#333333;fill-opacity:1;stroke:none;font-family:Microsoft YaHei;-inkscape-font-specification:Microsoft YaHei"
+   id="text3009"
+   transform="matrix(0.9868819,0,0,0.9868819,5.0746648,-0.07567583)"><path
+     d="m 335.68284,27.617582 59.8364,0 c -1.47927,-4.866971 -3.48336,-10.879235 -6.01227,-18.03681 l 21.90184,-4.4376279 c 3.57865,9.4956819 6.29849,16.9871539 8.15951,22.4744379 l 54.53988,0 0,19.325154 -21.25767,0 c -7.20529,21.663317 -17.58361,39.962549 -31.13497,54.897754 14.69656,10.16361 32.82878,17.91752 54.39673,23.26176 -7.92106,9.63871 -13.16986,16.65302 -15.74642,21.04294 -21.80652,-7.30062 -40.32047,-16.93933 -55.54192,-28.91615 -15.31704,11.54737 -34.11729,21.47238 -56.40082,29.77505 -5.15339,-8.30267 -9.92503,-15.22155 -14.31493,-20.75665 21.42465,-6.68029 39.36601,-14.93523 53.82413,-24.76483 C 374.18996,86.165681 364.45581,67.98574 358.72988,46.942736 l -23.04704,0 z m 92.83231,19.325154 -47.66871,0 c 4.91474,15.651053 12.88337,29.178647 23.90593,40.582823 11.11785,-11.451892 19.03876,-24.979486 23.76278,-40.582823 z"
+     style="font-size:146.58486938px;font-weight:bold;fill:#333333;-inkscape-font-specification:Microsoft YaHei Bold"
+     id="path3018"
+     inkscape:connector-curvature="0" /></g><text
+   xml:space="preserve"
+   style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Microsoft JhengHei;-inkscape-font-specification:Microsoft JhengHei"
+   x="345.90186"
+   y="-41.053684"
+   id="text3013"
+   sodipodi:linespacing="125%"><tspan
+     sodipodi:role="line"
+     id="tspan3015"
+     x="345.90186"
+     y="-41.053684"
+     style="font-size:166px;font-weight:bold;-inkscape-font-specification:Microsoft JhengHei Bold" /></text>
+</svg>

@@ -1,0 +1,95 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    --width: 200px;
+    --height: 70px;
+    --border-thickness: 1px;
+    --button-proportion: 0.8;
+    --button-diameter: calc(var(--button-proportion) * var(--height));
+    --button-offset: calc(0.5 * (1.0 - var(--button-proportion)) * var(--height));
+    --roundness: 50%;
+    --drawspeed: 0.06s;
+    --english: "EN";
+    --chinese: "中文";
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    background-color: #ef5350;
+}
+
+input {
+    display: none;
+}
+
+/* The whole switch */
+.toggle-switch {
+    width: var(--width);
+    height: var(--height);
+    background: rgb(53, 53, 53);
+    border-radius: calc(var(--height) / 2);
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+/* Draw the left-hand active button, as well as the left- and 
+right-hand background buttons */
+
+.toggle-switch::after, .left-bg, .right-bg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: white;
+}
+
+.toggle-switch::after, .left-bg::after {
+    content: var(--english);
+}
+
+.toggle-switch::after, .left-bg, .right-bg {
+    position: absolute;
+    width: var(--button-diameter);
+    height: var(--button-diameter);
+    border-radius: var(--roundness);
+    transition: var(--drawspeed) linear 0.05s;
+}
+
+.toggle-switch::after, .left-bg {
+    margin-left: var(--button-offset);
+}
+
+.left-bg, .right-bg {
+    background-color: rgb(93, 93, 93);
+    border: var(--border-thickness) solid rgb(160, 160, 160);
+}
+
+.right-bg{
+    margin-left: calc(var(--width) - var(--button-diameter) - var(--button-offset) - 2 * var(--border-thickness));
+}
+
+.right-bg::after {
+    content: var(--chinese);
+}
+
+.toggle-switch::after {
+    background-color: rgb(29, 110, 192);
+    border: var(--border-thickness) solid rgb(255, 255, 255);
+}
+
+input[type=checkbox]:checked + .toggle-switch::after {
+    content: var(--chinese);
+    transform: translateX(calc(var(--width) - var(--button-diameter) - 2 * var(--border-thickness) - 2 * var(--button-offset)));
+    transition: var(--drawspeed) linear 0.05s;
+}

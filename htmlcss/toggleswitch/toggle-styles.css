@@ -1,0 +1,88 @@
+body, html {
+    --drawspeed: 0.1s;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+.bg {
+    --off-colour: #ef5350;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--off-colour);
+    z-index: -1;
+    transition: background var(--drawspeed) linear;
+}
+
+input {
+    display: none;
+}
+
+.toggle {
+    width: 100px;
+    height: 50px;
+    background: white;
+    border-radius: 35px;
+    cursor: pointer;
+    position: relative;
+    --button-diameter: 40px;
+    --roundness: 50%;
+    --button-offset: 5px;
+}
+
+.toggle-switch:before, .toggle-switch:after {
+    content: "";
+    position: absolute;
+    width: var(--button-diameter);
+    height: var(--button-diameter);
+    border-radius: var(--roundness);
+    background-color: #aaa;
+    border: 1px solid #555;
+    bottom: var(--button-offset);
+    left: var(--button-offset);
+    transition: var(--drawspeed) ease-in-out;
+}
+
+.toggle-switch:before {
+    background-image: url("./icons/translation-icon-2.svg");
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.toggle-switch:after {
+    cursor: pointer;
+    transform: scale(0);
+}
+
+input[type=checkbox]:checked + .toggle-switch:before {
+    left: 55px;
+    transform: scale(0);
+}
+
+input[type=checkbox]:checked + .toggle-switch:after {
+    left: 55px;
+    transform: scale(1);
+    /* background-color: #183e84; */
+    /* background-image: url("./icons/translation-icon-2.svg"); */
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: green;
+}
+
+input[type=checkbox]:checked ~ .bg {
+    background-color: #183e84;
+}

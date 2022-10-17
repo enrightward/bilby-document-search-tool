@@ -5,10 +5,8 @@
     --very-large-font-size: 1.6rem;
     --medium-font-size: 1.2rem;
     --nav-list-gap: 0;
-    /* --triptych-gap: 0.3rem; */
     --triptych-gap: 0;
     --min-triptych-column-width: 450px;
-
     --main-search-bar-height: 35px;
     --main-search-bar-width: min(500px, 70vw);
     --main-search-border-tone: 50;
@@ -34,7 +32,8 @@
 
 .body {
     font-family: 'Source Sans Pro', sans-serif;
-    height: 100vh;
+    /* height: 100vh; */
+    min-width: fit-content;
     margin: 0;
     padding: 0;
     display: flex;
@@ -116,6 +115,7 @@
     gap: var(--triptych-gap);
     justify-content: flex-start;
     align-items: flex-start;
+    min-width: auto;
     margin: 0; 
     padding: 2px;
     overflow-y: hidden;
@@ -126,13 +126,15 @@
     background-image: url("img/hong-kong-5.jpg");
     background-position: center;
     background-size: cover;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-attachment: fixed;
     position: absolute;
-    top: 0px;
+    min-width: 100%;
+    min-height: 100%;
+    /* top: 0px;
     right: 0px;
     bottom: 0px;
-    left: 0px;
+    left: 0px; */
     opacity: 0.5;
     -webkit-filter: blur(5px);
 }
@@ -393,14 +395,117 @@
 }
 
 .result-card-header {
-    padding: 0 0.5rem;
-    margin-top: 0;
+    padding: 0 0.5rem 0.75rem 0;
+    /* margin-top: 0; */
+    margin: 0;
     border-bottom: 1px solid #aaa;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .result-card-url {
-    margin: 0 0 0.5rem 0;
+    /* margin: 0 0 0.5rem 0; */
+    margin: 0;
+}
+
+/* TriToggle HERE */
+
+/* BiToggle HERE */
+
+.language-toggle {
+    --width: 60px;
+    --height: 25px;
+    --border-thickness: 1.0px;
+    --button-proportion: 0.85;
+    --button-diameter: calc(var(--button-proportion) * var(--height));
+    --button-offset: calc(0.5 * (1.0 - var(--button-proportion)) * var(--height));
+    --roundness: 50%;
+    --drawspeed: 0.06s;
+    --english: "EN";
+    --chinese: "中文";
+    --toggle-font-size: 0.6rem;
+    --toggle-font-weight: 600;
+    --left-margin-offset: calc(var(--width) - var(--button-diameter) - 1.5 * var(--button-offset));
+    --translate-offset: calc(var(--left-margin-offset) - var(--button-offset));
+    --lang-toggle-border-color: #aaa;
+    --on-switch-colour: #079338;
+
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.language-switch {
+    display: none;
+}
+
+/* The whole switch */
+.bitoggle-switch {
+    width: var(--width);
+    height: var(--height);
+    background: rgb(53, 53, 53);
+    border-radius: calc(var(--height) / 2);
+    border: var(--border-thickness) solid var(--lang-toggle-border-color);
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+/* Draw the left-hand active button, as well as the left- and 
+right-hand background buttons */
+
+.bitoggle-switch::after, .bitoggle-left-bg, .bitoggle-right-bg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--toggle-font-size);
+    font-weight: var(--toggle-font-weight);
+}
+
+.bitoggle-switch::after, .bitoggle-left-bg::after {
+    content: var(--english);
+}
+
+.bitoggle-switch::after, .bitoggle-left-bg, .bitoggle-right-bg {
+    position: absolute;
+    width: var(--button-diameter);
+    height: var(--button-diameter);
+    border-radius: var(--roundness);
+    transition: var(--drawspeed) linear 0.05s;
+}
+
+.bitoggle-switch::after, .bitoggle-left-bg {
+    margin-left: var(--button-offset);
+}
+
+.bitoggle-left-bg, .bitoggle-right-bg {
+    color: #999;
+    background-color: rgb(93, 93, 93);
+    border: var(--border-thickness) solid rgb(160, 160, 160);
+}
+
+.bitoggle-right-bg{
+    margin-left: var(--left-margin-offset);
+}
+
+.bitoggle-right-bg::after {
+    content: var(--chinese);
+}
+
+.bitoggle-switch::after {
+    color: white;
+    background-color: var(--on-switch-colour);
+    /* background-color: red; */
+    border: var(--border-thickness) solid rgb(255, 255, 255);
+}
+
+.language-switch[type=checkbox]:checked + .bitoggle-switch::after {
+    content: var(--chinese);
+    transform: translateX(var(--translate-offset));
+    transition: var(--drawspeed) linear 0.05s;
 }
