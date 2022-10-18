@@ -1,7 +1,7 @@
 import React from "react"
 // import "./result-card-styles.css"
-
-import BiToggle from "../BiToggle/BiToggle.jsx"
+// import BiToggle from "../BiToggle/BiToggle.jsx"
+import TriToggle from "../TriToggle/TriToggle.jsx"
 
 export default function ResultCard({searchTerm, key}) {
 
@@ -9,7 +9,8 @@ export default function ResultCard({searchTerm, key}) {
         <div className="result-card top-layer">
             <div className="result-card-header">
                 <h5 className="result-card-url">https://people.cn</h5>
-                <BiToggle className="bitoggle" key={key}/>
+                {/* <BiToggle className="bitoggle" key={key}/> */}
+                <TriToggle className="tritoggle" key={key}/>
             </div>
             <div className="result-card-body">
                 <div className="result-card-body-en">

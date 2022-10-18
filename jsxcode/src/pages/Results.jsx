@@ -2,6 +2,7 @@ import React from "react"
 import { useLocation } from "react-router-dom"
 import ResultCard from "../components/ResultCard/ResultCard.jsx"
 import ResultSearchBar from "../components/ResultSearchBar/ResultSearchBar.jsx"
+import TriToggle from "../components/TriToggle/TriToggle.jsx"
 // import "./results-page-styles.css"
 
 
