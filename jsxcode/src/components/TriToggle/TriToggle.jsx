@@ -7,7 +7,7 @@ export default function TriToggle() {
         <div className="tritoggle-switch">
             <input id="en" name="state-d" type="radio" defaultChecked/>
             <label className="en" htmlFor="en" onClick={enClicked()}></label>
-            <input id="both" name="state-d" type="radio"/>
+            <input id="both" name="state-d" type="radio" onClick={bothClicked()}/>
             <label className="both" htmlFor="both" onClick={bothClicked()}></label>
             <input id="zh" name="state-d" type="radio" />
             <label className="zh" htmlFor="zh" onClick={zhClicked()}></label>
