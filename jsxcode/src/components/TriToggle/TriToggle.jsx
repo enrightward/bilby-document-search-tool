@@ -1,5 +1,5 @@
 import React from "react"
-import "./tritoggle-styles.css"
+// import "./tritoggle-styles.css"
 
 export default function TriToggle() {
 
