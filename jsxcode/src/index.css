@@ -380,28 +380,14 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    /* justify-content: space-between; */
     justify-content: center;
 }
 
-/* .result-card-body-en, .result-card-body-zh {
-    flex: 1;
-    font-size: 0.8rem;
-    font-weight: 400;
-    margin: 0;
-    padding: 0.3rem;
-    text-align: justify;
-    width: calc(var(--result-card-width) / 2);
-    overflow: hidden;
-} */
-
 .result-card-body-en, .result-card-body-zh {
-    /* flex: 1; */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
     --lambda: 1.0;
     max-height: 180px;
     font-size: 0.8rem;
@@ -409,25 +395,21 @@
     margin: 0;
     padding: 0.6rem;
     text-align: justify;
-    /* width: calc(var(--result-card-width) / 2); */
     overflow: hidden;
 }
 
 .result-card-body-en {
-    /* flex: 1; */
     padding: calc(0.6rem * var(--lambda));
     width: calc(var(--result-card-width) * var(--lambda));
 }
 
 .result-card-body-zh {
-    /* flex: 1; */
     padding: calc(0.6rem * (1.0 - var(--lambda)));
     width: calc(var(--result-card-width) * (1.0 - var(--lambda)));
 }
 
 .result-card-header {
     padding: 0 0.5rem 0.75rem 0;
-    /* margin-top: 0; */
     margin: 0;
     border-bottom: 1px solid #aaa;
     display: flex;
@@ -437,7 +419,6 @@
 }
 
 .result-card-url {
-    /* margin: 0 0 0.5rem 0; */
     margin: 0;
 }
 

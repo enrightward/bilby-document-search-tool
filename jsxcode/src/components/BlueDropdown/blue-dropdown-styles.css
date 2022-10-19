@@ -1,0 +1,25 @@
+.blue-button-dropdown {
+    --blue-dropdown-width: 100px;
+    --blue-dropdown-height: 30px;
+    --blue-dropdown-border-radius: calc(var(--blue-dropdown-height) / 6);
+    --blue-dropdown-font-size: 0.7rem;
+
+    color: white;
+    display: flex;
+    flex-direction: row;
+    text-align-last: center;
+    width: var(--blue-dropdown-width);
+    height: var(--blue-dropdown-height);
+    font-size: var(--blue-dropdown-font-size);
+    border-radius: var(--blue-dropdown-border-radius);
+    background-color: #555;
+    border: 1px solid #222;
+}
+
+.blue-button-dropdown:hover {
+    background-color: hsl(240, 70%, 55%);
+}
+
+.blue-button-dropdown:active, .blue-dropdown-dropdown:focus {
+    outline: none;
+}

@@ -1,24 +1,9 @@
-.triplecol {
+.results-under-panel {
     display: flex;
+    width: 100%;
     flex-direction: row;
-    flex-wrap: hidden;
-    justify-content: flex-start;
-    position: relative;
-    gap: 3px;
-    width: 100vw;
-    height: 92vh;
-    margin: 0px;
-    padding: 0 10px;
-    /* overflow: auto; */
-}
-
-.results-col, .doc-reader-col, .statistics-col {
-    display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    min-width: 700px;
-    max-width: 33vw;
-    padding: 0.3rem;
-    background-color: rgba(0, 0, 0, 0.7);
-    overflow-y: auto;
+    margin: 0.5rem;
+    padding: 0 0.7rem;
 }
