@@ -1,6 +1,6 @@
 import React from "react"
 import AbstractSearchBar from "../AbstractSearchBar/AbstractSearchBar.jsx"
-// import "./main-searchbar-styles.css"
+import {} "./main-searchbar-styles.js"
 
 export default function MainSearchBar() {
     return (

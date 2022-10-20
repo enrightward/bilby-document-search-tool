@@ -1,8 +1,9 @@
 import React from "react"
+import { BilbyPage } from "./pages-styles.js"
 
 export default function Newsletters() {
     return (
-        <div className="nav-page newsletters-page top-layer">
+        <BilbyPage>
             <h1>Newsletters</h1>
             <p>
                 Draft customised newsletters, and create templates to regularly
@@ -12,6 +13,6 @@ export default function Newsletters() {
                 Bilby AI is a project of{" "}
                 <a href="https://www.bilby.ai">Bilby AI Pty Ltd</a>.
             </p>
-        </div>
+        </BilbyPage>
     )
 }

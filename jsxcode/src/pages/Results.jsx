@@ -1,13 +1,29 @@
-import React from "react"
+import React, { useState } from "react"
 import { useLocation } from "react-router-dom"
 import ResultCard from "../components/ResultCard/ResultCard.jsx"
-import ResultSearchBar from "../components/ResultSearchBar/ResultSearchBar.jsx"
 import BlueButton from "../components/BlueButton/BlueButton.jsx"
 import DatasetPanel from "../components/DatasetPanel/DatasetPanel.jsx"
+import SearchBar from "../components/SearchBar/SearchBar.jsx"
+
 import MainDocumentCard from "../components/MainDocumentCard/MainDocumentCard.jsx"
-import "./results-page-styles.css"
+// import "./results-page-styles.css"
+
+import {
+    ResultsColumnWrapper,
+    ResultsUnderPanel,
+} from "./results-page-styles.js"
+
+import {
+    searchBarHeight,
+    resultSearchBarWidth,
+    minTriptychColumnWidth,
+    lightBorderColor,
+    cardBorderRadius,
+    triptychColumnBackgroundColour,
+} from "../components/styleSettings.js"
 
 export default function Results() {
+    const [query, setQuery] = useState("")
     const location = useLocation()
     const searchTerm = location.state.searchTerm
     const numrows = 20
@@ -19,22 +35,42 @@ export default function Results() {
 
     return (
         <>
-            <div className="results-col top-layer">
-                <ResultSearchBar className="results-search"/>
-                <div className="results-under-panel">
+            <ResultsColumnWrapper
+                minWidth={minTriptychColumnWidth}
+                borderColor={lightBorderColor}
+                borderRadius={cardBorderRadius}
+                backgroundColor={triptychColumnBackgroundColour}
+            >
+                <SearchBar 
+                    width={resultSearchBarWidth}
+                    height={searchBarHeight}
+                    query={query}
+                    setQuery={setQuery}
+                />
+                <ResultsUnderPanel>
                     <BlueButton text="sort by..."/>
                     <BlueButton text="+ data"/>
-                </div>
+                </ResultsUnderPanel>
                 {cards}
-            </div>
-            <div className="doc-reader-col top-layer">
+            </ResultsColumnWrapper>
+            <ResultsColumnWrapper
+                minWidth={minTriptychColumnWidth}
+                borderColor={lightBorderColor}
+                borderRadius={cardBorderRadius}
+                backgroundColor={triptychColumnBackgroundColour}
+            >
                 doc-reader-col
                 <MainDocumentCard/>
-            </div>
-            <div className="statistics-col top-layer">
+            </ResultsColumnWrapper>
+            <ResultsColumnWrapper
+                minWidth={minTriptychColumnWidth}
+                borderColor={lightBorderColor}
+                borderRadius={cardBorderRadius}
+                backgroundColor={triptychColumnBackgroundColour}
+            >
                 statistics-col
                 <DatasetPanel text="dataset-panel"/>
-            </div>
+            </ResultsColumnWrapper>
         </>
     )
 }

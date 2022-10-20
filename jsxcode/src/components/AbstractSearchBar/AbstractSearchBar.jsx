@@ -17,10 +17,6 @@ export default function SearchBar( { classNamePrefix } ) {
         navigate("/results", { state: { searchTerm: searchTerm } })
     }
 
-    // const prepend = (className) => {
-    //     return `${classNamePrefix}${className}`
-    // }
-
     const prepend = function(classNames) {
         const result = classNames.split(" ").map((item) => {
             return classNamePrefix + item

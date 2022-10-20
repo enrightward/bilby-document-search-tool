@@ -1,31 +1,48 @@
-import React, { useState } from "react"
-// import { useNavigate } from "react-router-dom"
-var searchData = require("../../data/MOCK_DATA.json")
-const searchLimit = 15
+import React from "react"
+import { 
+    SearchDropdownWrapper, 
+    MatchWrapper 
+} from "./searchbar-dropdown-styles.js"
 
-export default function SearchBarDropdown() {
-    const [value, setValue] = useState("")
-    // const navigate = useNavigate()
+import { 
+    regularFontSize, 
+    searchBarWidth,
+    darkBorderColor,
+    textDarkBackgroundColor,
+    autoCompleteLimit,
+    searchData,
+} from "../styleSettings.js"
+
+
+const findMatches = (query, searchData) => {
+    const matches = searchData.filter(item => {
+        const searchTerm = query.toLowerCase()
+        const fullName = item.full_name.toLowerCase()
+        return searchTerm && fullName.includes(searchTerm) && fullName !== searchTerm
+    })
+    .slice(0, autoCompleteLimit)
+    return matches   
+}
+
+
+export default function SearchBarDropdown( { query, setQuery } ) {
 
     return (
-        <div className="search-dropdown">
-            {searchData.filter(item => {
-                const searchTerm = value.toLowerCase()
-                console.log("searchTerm", searchTerm)
-                console.log("len(searchData)", searchData.length)
-                const fullName = item.full_name.toLowerCase()
-                return searchTerm && fullName.includes(searchTerm) && fullName !== searchTerm
-            })
-            .slice(0, searchLimit)
-            .map((item) => (
-                <div 
-                    className="dropdown-row"
-                    onClick={() => {setValue(item.full_name)}}
-                    key={item.full_name}
+        <SearchDropdownWrapper
+            borderColor={darkBorderColor}
+            width={searchBarWidth}
+            fontSize={regularFontSize}
+            backgroundColor={textDarkBackgroundColor}
+        >
+        {findMatches(query, searchData).map((item, counter) => (
+                <MatchWrapper 
+                    key={counter}
+                    counter={counter}
+                    onClick={() => {setQuery(item.full_name)}}
                 >
                     {item.full_name}
-                </div>
-            ))}
-        </div>
+                </MatchWrapper>
+        ))}
+        </SearchDropdownWrapper>
     )
 }

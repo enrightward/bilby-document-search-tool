@@ -1,25 +1,34 @@
 import React from "react"
-// import "./navbar-styles.css"
-import { Link, useMatch, useResolvedPath } from "react-router-dom"
+import "./navbar-styles.js"
+import { useMatch, useResolvedPath } from "react-router-dom"
+
+import { 
+    NavWrapper, 
+    NavLogo, 
+    NavLinksDiv, 
+    NavLinksList, 
+    NavLinksListLink, 
+    NavLinksListItem,
+} from './navbar-styles.js'
 
 export default function NavBar() {
     const myState = { name: "Dinosaur" }
 
     return (
-        <nav className="nav top-layer">   
-            <Link to="/" className="nav-logo">
+        <NavWrapper>
+            <NavLogo to="/">
                 Bilby AI
-            </Link>
-            <div className="nav-links-div">
-                <ul className="nav-links-ul">
+            </NavLogo>
+            <NavLinksDiv>
+                <NavLinksList>
                     <CustomLink to="/about" state={myState}>About</CustomLink>
                     <CustomLink to="/signup">Sign Up</CustomLink>
                     <CustomLink to="/datasets">Datasets</CustomLink>
                     <CustomLink to="/models">Models</CustomLink>
                     <CustomLink to="/newsletters">Newsletters</CustomLink>
-                </ul>
-            </div>
-        </nav>
+                </NavLinksList>
+            </NavLinksDiv>
+        </NavWrapper>
     )
 }
 
@@ -28,10 +37,10 @@ function CustomLink({ to, children, ...props }) {
     const isActive = useMatch({ path: resolvedPath.pathname, end: true })
 
     return (
-        <li className = {isActive ? "active" : ""}>
-            <Link to={to} {...props}>
+        <NavLinksListItem className = {isActive ? "active" : ""}>
+            <NavLinksListLink to={to} {...props}>
                 {children}
-            </Link>
-        </li>
+            </NavLinksListLink>
+        </NavLinksListItem>
     )
 }

@@ -11,7 +11,8 @@
     --main-search-bar-width: min(500px, 70vw);
     --main-search-border-tone: 50;
     --main-search-border-color: rgb(var(--main-search-border-tone), var(--main-search-border-tone), var(--main-search-border-tone));
-    --main-search-background-color: rgb(40, 40, 40);
+    --main-search-background-color: #282828;
+    /* --main-search-background-color: #323232; */
     --main-search-button-width: calc(var(--main-search-bar-height) * 1.2);
     --main-total-search-width: calc(var(--main-search-bar-width) + var(--main-search-button-width) * 2);
 
@@ -19,7 +20,7 @@
     --results-search-button-width: calc(var(--main-search-bar-height) * 1.2);
     --results-total-search-width: calc(var(--results-search-bar-width) + var(--results-search-button-width) * 2);
 
-    --result-card-width: 95%;
+    /* --result-card-width: 95%; */
 }
 
 #root {
@@ -32,7 +33,6 @@
 
 .body {
     font-family: 'Source Sans Pro', sans-serif;
-    /* height: 100vh; */
     min-width: fit-content;
     margin: 0;
     padding: 0;
@@ -42,331 +42,13 @@
     background-color: #222;
 }
 
-.nav {
-    background-color: #333;
-    padding: 0;
-    min-height: var(--nav-height);
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    font-size: var(--medium-font-size);
-}
-
-.nav-logo {
-    margin: 0 1rem;
-    color: white;
-    font-size: var(--large-font-size);
-    text-decoration: none;
-    font-weight: bold;
-    white-space: nowrap;
-}
-
-.nav-links-div {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    margin: 0;
-    padding: 0;
-    height: 100%;
-}
-
-.nav-links-ul {
-    padding: 0;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    display: flex;
-    flex-direction: row;
-    list-style: none;
-    gap: var(--nav-list-gap);
-}
-
-.nav-links-ul li {
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.nav-links-ul li.active {
-    background-color: black;
-}
-
-.nav-links-ul li a {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-decoration: none;
-    color: white;
-    padding: 0 2.0rem;
-}
-
-.main-panel {
-    flex-grow: 1;
-    color: white;
-    background-color: black;
-    display: flex;
-    flex-direction: row;
-    gap: var(--triptych-gap);
-    justify-content: flex-start;
-    align-items: flex-start;
-    min-width: auto;
-    margin: 0; 
-    padding: 2px;
-    overflow-y: hidden;
-}
-
-.main-panel::before {
-    content: "";
-    background-image: url("img/hong-kong-5.jpg");
-    background-position: center;
-    background-size: cover;
-    background-repeat: repeat;
-    background-attachment: fixed;
-    position: absolute;
-    min-width: 100%;
-    min-height: 100%;
-    /* top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px; */
-    opacity: 0.5;
-    -webkit-filter: blur(5px);
-}
-
 .top-layer {
     position: relative;
 }
 
-.nav-page {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.main-search-area {
-    width: 100%;
-    margin-top: 25vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.main-search-bar-label {
-    font-size: var(--very-large-font-size);
-    font-weight: 400;
-    margin-bottom: .5rem;
-}
-
-.main-search-bar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.main-search-input, .main-search-btn {
-    border: solid 1px var(--main-search-border-color);
-    margin: 10px 0 0 0;
-    height: var(--main-search-bar-height);
-}
-
-.main-search-btn {
-    width: var(--main-search-button-width);
-}
-
-.main-basic-search-btn {
-    background-color: black;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-}
-
-.main-adv-search-btn {
-    background-color: black;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-}
-
-.main-search-btn span.main-search-icon {
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.main-search-btn span.main-basic-search-icon {
-    background-image: url("./img/search-icon-white-2.svg");
-    background-size: 60%;
-}
-
-.main-search-btn span.main-adv-search-icon {
-    background-image: url("https://img.icons8.com/ios/50/FFFFFF/sorting-options--v1.png");
-    background-size: 60%;
-}
-
-.main-search-input {
-    color: white;
-    padding: 0.5rem;
-    font-weight: 400;
-    font-size: var(--large-font-size);
-    width: var(--main-search-bar-width);
-    height: var(--main-search-bar-height);
-    background-color: var(--main-search-background-color);
-}
-
-.main-search-input:hover, .main-search-input:focus {
-    outline: none;
-}
-
-.main-search-dropdown {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    border: 1px solid var(--main-search-border-color);
-    width: var(--main-total-search-width);
-    font-size: var(--large-font-size);
-    font-weight: 400;
-    padding: 0.75rem 1.5rem;
-    margin: 0;
-    background-color: var(--main-search-background-color);
-}
-
-.main-search-dropdown:empty {
-    border: none;
-    padding: 0;
-}
-
-/* results CSS below */
-
-/* TRIPTYCH CSS here */
-
-.results-col, .doc-reader-col, .statistics-col {
-    height: 100%;
-    display: flex;
-    flex: 1;
-    min-width: var(--min-triptych-column-width);
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    border: 1px solid var(--main-search-border-color);
-    border-radius: 2px;
-    background-color: rgba(0, 0, 0, 0.5);
-    /* background-color: blue; */
-    overflow-y: scroll;
-}
-
-/* results SEARCHBAR CSS here */
-
-.results-search-area {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.results-search-bar {
-    margin: 0.5rem 0 0 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.results-search-btn {
-    width: calc(var(--results-search-button-width) * 1.0);
-}
-
-.results-search-input, .results-search-btn {
-    border: solid 1px var(--main-search-border-color);
-    height: var(--main-search-bar-height);
-}
-
-.results-basic-search-btn {
-    background-color: black;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-}
-
-.results-adv-search-btn {
-    background-color: black;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-}
-
-.results-search-btn span.results-search-icon {
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.results-search-btn span.results-basic-search-icon {
-    background-image: url("./img/search-icon-white-2.svg");
-    background-size: 60%;
-}
-
-.results-search-btn span.results-adv-search-icon {
-    background-image: url("https://img.icons8.com/ios/50/FFFFFF/sorting-options--v1.png");
-    background-size: 60%;
-}
-
-.results-search-input {
-    color: white;
-    padding: 0.5rem;
-    font-weight: 400;
-    font-size: var(--large-font-size);
-    width: var(--results-search-bar-width);
-    height: var(--main-search-bar-height);
-    background-color: var(--main-search-background-color);
-}
-
-.results-search-input:hover, .results-search-input:focus {
-    outline: none;
-}
-
-.results-search-dropdown {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    border: 1px solid var(--main-search-border-color);
-    width: var(--results-total-search-width);
-    font-size: var(--medium-font-size);
-    font-weight: 400;
-    padding: 0.75rem 1.5rem;
-    margin: 0;
-    background-color: var(--main-search-background-color);
-}
-
-.results-search-dropdown:empty {
-    border: none;
-    padding: 0;
-}
-
 /* results CARD CSS here */
 
-.result-mockup {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: orange;
-    width: 90%;
-    min-height: 100px;
-    margin: 3px;
-}
-
-.result-card {
+/* .result-card {
     margin: 0.5rem 0;
     padding: 1.0rem;
     font-size: 0.9rem;
@@ -420,7 +102,7 @@
 
 .result-card-url {
     margin: 0;
-}
+} */
 
 /* BiToggle HERE */
 
