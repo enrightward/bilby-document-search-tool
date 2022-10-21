@@ -3,7 +3,6 @@ import React, { useState } from "react"
 // import TriToggle from "../TriToggle/TriToggle.jsx"
 import RTriToggle from "../TriToggle/RTriToggle.jsx"
 
-
 import {
     ResultCardWrapper,
     ResultCardHeader,
@@ -18,8 +17,7 @@ import {
 
 export default function ResultCard( props ) {
     const [language, setLanguage] = useState("\u00BD")
-    // const [language, setLanguage] = useState("EN")
-
+    
     const handleChange = (val) => {
         setLanguage(val)
     }

@@ -4,9 +4,7 @@ import ResultCard from "../components/ResultCard/ResultCard.jsx"
 import BlueButton from "../components/BlueButton/BlueButton.jsx"
 import DatasetPanel from "../components/DatasetPanel/DatasetPanel.jsx"
 import SearchBar from "../components/SearchBar/SearchBar.jsx"
-
 import MainDocumentCard from "../components/MainDocumentCard/MainDocumentCard.jsx"
-// import "./results-page-styles.css"
 
 import {
     ResultsColumnWrapper,
