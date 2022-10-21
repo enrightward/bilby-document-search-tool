@@ -3,10 +3,23 @@
 // Generic
 
 export const regularFontSize = "1.0rem"
+export const mediumFontSize = "1.2rem"
+export const largeFontSize = "1.4rem"
 export const veryLargeFontSize = "1.6rem"
 export const darkBorderColor = "#323232"
 export const lightBorderColor = "#aaa"
 export const textDarkBackgroundColor = "#222"
+
+// NavBar
+
+export const navBarHeight = "60px"
+export const navBarBackgroundColor = "#333"
+export const navListGap = "0rem"
+export const navListItemBackgroundColor = "black"
+export const navLogoColor = "white"
+export const navListColor = "white"
+export const navListPadding = "1.5rem"
+export const navLogoPadding = "2rem"
 
 // Main Search Bar
 
@@ -33,12 +46,28 @@ export const minTriptychColumnWidth = "450px"
 export const cardBorderRadius = "5px"
 export const triptychColumnBackgroundColour = "rgba(0, 0, 0, 0.5)"
 
+// Results column
+
+export const numResults = 20
+
 // Result cards
 
+export const minResultCardHeight = "200px"
+export const maxResultCardHeight = "300px"
 export const resultCardWidth = "95%"
 export const resultCardBorderRadius = "3px"
-export const resultCardFontSize = "0.9rem"
+export const resultCardFontSize = "0.8rem"
+export const resultCardFontWeight = 400
 export const resultCardPadding = "0rem 0.7rem"
 export const resultCardColumnPadding = 0.75
 export const resultCardBackgrounColor = "#111"
 export const resultCardBorderColor = "#aaa"
+export const resultCardTitleColor = "#888"
+export const resultCardColumnGap = "0.9rem"
+export const resultCardTopGap = "0.5rem"
+export const resultCardBottomGap = "1.0rem"
+export const resultCardTitleBuffer = "0.5rem"
+export const resultCardHeaderPadding = "0.5rem"
+export const webLinkColor = "hsl(220, 100%, 70%)"
+export const webLinkFontSize = "0.85rem"
+export const webLinkFontWeight = 600

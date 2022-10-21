@@ -1,12 +1,14 @@
 import styled from "styled-components"
 
+const triToggleHeight = "26px"
+const triToggleWidth = "135px"
+
 export const Switch = styled.div`
-    --height: 20px;
-    --width: 70px;
     font-family: "Lucida Grande", Tahoma, Verdana, sans-serif;
     position: relative;
-    height: 26px;
-    width: 135px;
+    // height: 26px;
+    height: ${triToggleHeight};
+    width: ${triToggleWidth};
     background-color: #555;
     border-radius: 3px;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3),

@@ -1,5 +1,4 @@
 import React from "react"
-import "./navbar-styles.js"
 import { useMatch, useResolvedPath } from "react-router-dom"
 
 import { 

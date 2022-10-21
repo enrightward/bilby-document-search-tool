@@ -1,25 +1,38 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 
+import {
+    navBarHeight,
+    mediumFontSize,
+    navBarBackgroundColor,
+    largeFontSize,
+    navListGap,
+    navListItemBackgroundColor,
+    navLogoColor,
+    navListColor,
+    navListPadding,
+    navLogoPadding,
+} from "../styleSettings.js"
+
 export const NavWrapper = styled.nav`
     & {
         position: relative;
-        background-color: #333;
+        background-color: ${navBarBackgroundColor};
         padding: 0;
-        min-height: var(--nav-height);
+        min-height: ${navBarHeight};
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        font-size: var(--medium-font-size);
+        font-size: ${mediumFontSize};
     }
 `
 
 export const NavLogo = styled(Link)`
     & {
-        margin: 0 1rem;
-        color: white;
-        font-size: var(--large-font-size);
+        margin: 0 ${navLogoPadding};
+        color: ${navLogoColor};
+        font-size: ${largeFontSize};
         text-decoration: none;
         font-weight: bold;
         white-space: nowrap;
@@ -49,7 +62,7 @@ export const NavLinksList = styled.ul`
         display: flex;
         flex-direction: row;
         list-style: none;
-        gap: var(--nav-list-gap);
+        gap: ${navListGap};
     }
 `
 
@@ -62,7 +75,7 @@ export const NavLinksListItem = styled.li`
     }
 
     &:active {
-        background-color: black;
+        background-color: ${navListItemBackgroundColor};
     }
 `
 
@@ -72,8 +85,9 @@ export const NavLinksListLink = styled(Link)`
         display: flex;
         flex-direction: column;
         justify-content: center;
+        white-space: nowrap;
         text-decoration: none;
-        color: white;
-        padding: 0 2rem;
+        color: ${navListColor};
+        padding: 0 ${navListPadding};
     }
 `

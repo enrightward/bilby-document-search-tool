@@ -4,32 +4,49 @@ import {
     resultCardPadding,
     resultCardColumnPadding,
     resultCardFontSize,
+    resultCardFontWeight,
     resultCardBackgrounColor,
     resultCardBorderColor,
+    resultCardTitleColor,
     resultCardBorderRadius,
     resultCardWidth,
+    resultCardColumnGap,
+    resultCardTopGap,
+    resultCardBottomGap,
+    resultCardTitleBuffer,
+    resultCardHeaderPadding,
+    webLinkColor,
+    webLinkFontSize,
+    webLinkFontWeight,
+    minResultCardHeight,
+    maxResultCardHeight,
 } from "../styleSettings.js"
 
 export const ResultCardWrapper = styled.div`
     & {
+        overflow: hidden;
         margin: 0.2rem 0;
         padding: ${resultCardPadding};
         font-size: ${resultCardFontSize};
+        font-weight: ${resultCardFontWeight};
         background-color: ${resultCardBackgrounColor};
         border: 1px solid ${resultCardBorderColor};
         border-radius: ${resultCardBorderRadius};
         width: ${resultCardWidth};
-
+        min-height: ${minResultCardHeight};
+        max-height: ${maxResultCardHeight};
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: flex-start;
+        // background-color: red;
     }
 `
+
 export const ResultCardHeader = styled.div`
     & {
         margin: 0;
-        padding: 0;
+        padding: ${resultCardHeaderPadding};
         width 100%;
         border-bottom: 1px solid #aaa;
         display: flex;
@@ -39,13 +56,62 @@ export const ResultCardHeader = styled.div`
     }
 `
 
+export const WebLink = styled.a`
+    & {
+        color: ${webLinkColor};
+        font-size: ${webLinkFontSize};
+        font-weight: ${webLinkFontWeight};
+        text-decoration: underline;
+    }
+`
+
+export const ResultCardTitle = styled.h3`
+    & {
+        margin: 0;
+        padding: 0 0 ${resultCardTitleBuffer} 0;
+        width 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: ${resultCardTitleColor};
+    }
+`
+
 export const ResultCardBody = styled.div`
     & {
         display: flex;
-        flex-direction: row;
+        flex: 1;
+        flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
         padding: 0rem;
+        // background-color: green;
+        background-color: ${resultCardBackgrounColor};
+        overflow-y: hidden;
+    }
+`
+
+const computeGap = (selectedLanguage) => {
+    const gap = selectedLanguage === "\u00BD" ? resultCardColumnGap : "0rem"
+    console.log("selectedLanguage", selectedLanguage)
+    console.log("gap", gap)
+    return gap
+}
+
+export const ResultCardBodyInner = styled.div`
+    & {
+        width: 100%;
+        height: 95%;
+        display: flex;
+        flex-direction: row;
+        gap: ${(props) => computeGap(props.selectedLanguage)};
+        justify-content: center;
+        align-items: flex-start;
+        padding: ${resultCardTopGap} 0 ${resultCardBottomGap} 0;
+        background-color: ${resultCardBackgrounColor};
+        // background-color: blue;
+        overflow-y: hidden;
     }
 `
 
@@ -55,48 +121,14 @@ export const ResultCardBodyColumn = styled.div`
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
-        max-height: 180px;
-        font-size: 0.8rem;
-        font-weight: 400;
-        margin: 0;
-        padding: 0.6rem;
         text-align: justify;
-        overflow: hidden;
+        margin: 0;
+        padding: 0;
+        overflow-y: hidden;
+        background-color: ${resultCardBackgrounColor};
+        // background-color: purple;
     }
 `
-
-const computePadding = (selectedLanguage, columnLanguage) => {
-    let paddingLeft
-    let paddingRight
-    let paddingTop = resultCardColumnPadding / 2
-    let paddingBottom = resultCardColumnPadding / 2
-
-    if (selectedLanguage === columnLanguage) {
-        paddingLeft = resultCardColumnPadding
-        paddingRight = resultCardColumnPadding
-    } else if (selectedLanguage === "\u00BD") {
-        if (columnLanguage === "EN") {
-            paddingLeft = resultCardColumnPadding
-            paddingRight = resultCardColumnPadding / 2
-        } else {
-            paddingLeft = resultCardColumnPadding / 2
-            paddingRight = resultCardColumnPadding
-        }
-    } else {
-        paddingLeft = 0
-        paddingRight = 0
-        paddingTop = 0
-        paddingBottom = 0
-    }
-
-    const padding = `${paddingTop}rem ${paddingRight}rem ${paddingBottom}rem ${paddingLeft}rem`
-    console.log("PADDING")
-    console.log("selectedLanguage", selectedLanguage)
-    console.log("columnLanguage", columnLanguage)
-    console.log("padding", padding)
-    console.log("")
-    return padding
-}
 
 const computeWidth = (selectedLanguage, columnLanguage) => {
     let width
@@ -108,21 +140,13 @@ const computeWidth = (selectedLanguage, columnLanguage) => {
     } else {
         width = "0%"
     }
-
-    console.log("PADDING")
-    console.log("selectedLanguage", selectedLanguage)
-    console.log("columnLanguage", columnLanguage)
-    console.log("width", width)
-    console.log("")
     return width
 }
 
 export const ResultCardBodyColumnEnglish = styled(ResultCardBodyColumn)`
-    padding: ${(props) => computePadding(props.selectedLanguage, "EN")};
     width: ${(props) => computeWidth(props.selectedLanguage, "EN")};
 `
 
 export const ResultCardBodyColumnChinese = styled(ResultCardBodyColumn)`
-    padding: ${(props) => computePadding(props.selectedLanguage, "中文")};
     width: ${(props) => computeWidth(props.selectedLanguage, "中文")};
 `

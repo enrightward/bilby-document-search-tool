@@ -20,16 +20,16 @@ import {
     lightBorderColor,
     cardBorderRadius,
     triptychColumnBackgroundColour,
+    numResults,
 } from "../components/styleSettings.js"
 
 export default function Results() {
     const [query, setQuery] = useState("")
     const location = useLocation()
     const searchTerm = location.state.searchTerm
-    const numrows = 20
     const cards = []
 
-    for (let i = 0; i < numrows; i++) {
+    for (let i = 0; i < numResults; i++) {
         cards.push(<ResultCard searchTerm={searchTerm} key={i} listId={i} />)
     }
 
