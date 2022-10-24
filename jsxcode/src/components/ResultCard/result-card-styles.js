@@ -2,7 +2,6 @@ import styled from "styled-components"
 
 import {
     resultCardPadding,
-    resultCardColumnPadding,
     resultCardFontSize,
     resultCardFontWeight,
     resultCardBackgrounColor,
@@ -39,7 +38,6 @@ export const ResultCardWrapper = styled.div`
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
-        // background-color: red;
     }
 `
 
@@ -86,7 +84,6 @@ export const ResultCardBody = styled.div`
         align-items: center;
         justify-content: flex-start;
         padding: 0rem;
-        // background-color: green;
         background-color: ${resultCardBackgrounColor};
         overflow-y: hidden;
     }
@@ -94,8 +91,6 @@ export const ResultCardBody = styled.div`
 
 const computeGap = (selectedLanguage) => {
     const gap = selectedLanguage === "\u00BD" ? resultCardColumnGap : "0rem"
-    console.log("selectedLanguage", selectedLanguage)
-    console.log("gap", gap)
     return gap
 }
 
@@ -110,7 +105,6 @@ export const ResultCardBodyInner = styled.div`
         align-items: flex-start;
         padding: ${resultCardTopGap} 0 ${resultCardBottomGap} 0;
         background-color: ${resultCardBackgrounColor};
-        // background-color: blue;
         overflow-y: hidden;
     }
 `
@@ -126,7 +120,6 @@ export const ResultCardBodyColumn = styled.div`
         padding: 0;
         overflow-y: hidden;
         background-color: ${resultCardBackgrounColor};
-        // background-color: purple;
     }
 `
 

@@ -1,7 +1,5 @@
 import React, { useState } from "react"
-// import BiToggle from "../BiToggle/BiToggle.jsx"
-// import TriToggle from "../TriToggle/TriToggle.jsx"
-import RTriToggle from "../TriToggle/RTriToggle.jsx"
+import NewTriToggle from "../TriToggle/TriToggle.jsx"
 
 import {
     ResultCardWrapper,
@@ -16,6 +14,7 @@ import {
 
 
 export default function ResultCard( props ) {
+    const languageOptions = ["EN", "\u00BD", "中文"]
     const [language, setLanguage] = useState("\u00BD")
     
     const handleChange = (val) => {
@@ -26,7 +25,7 @@ export default function ResultCard( props ) {
         <ResultCardWrapper className="wrapper">
             <ResultCardHeader className="header">
                 <WebLink href="https://people.cn">https://people.cn</WebLink>
-                <RTriToggle key={props.listId} handleChange={handleChange} values={["EN", "\u00BD", "中文"]} selectedLanguage={language} />
+                <NewTriToggle key={props.listId} handleChange={handleChange} languageOptions={languageOptions} selectedLanguage={language} />
             </ResultCardHeader>
             <ResultCardBody className="body">
                 <ResultCardBodyInner selectedLanguage={language} className="inner">
