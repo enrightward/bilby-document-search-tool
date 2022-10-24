@@ -21,11 +21,32 @@ import {
     maxResultCardHeight,
 } from "../styleSettings.js"
 
+// export const ResultCardWrapper = styled.div`
+//     & {
+//         overflow: hidden;
+//         margin: 0.2rem 0;
+//         padding: ${resultCardPadding};
+//         font-size: ${resultCardFontSize};
+//         font-weight: ${resultCardFontWeight};
+//         background-color: ${resultCardBackgrounColor};
+//         border: 1px solid ${resultCardBorderColor};
+//         border-radius: ${resultCardBorderRadius};
+//         width: ${resultCardWidth};
+//         min-height: ${minResultCardHeight};
+//         max-height: ${maxResultCardHeight};
+//         display: flex;
+//         flex-direction: column;
+//         justify-content: flex-start;
+//         align-items: flex-start;
+//     }
+// `
+
 export const ResultCardWrapper = styled.div`
     & {
         overflow: hidden;
         margin: 0.2rem 0;
-        padding: ${resultCardPadding};
+        // padding: ${resultCardPadding};
+        padding: 0;
         font-size: ${resultCardFontSize};
         font-weight: ${resultCardFontWeight};
         background-color: ${resultCardBackgrounColor};
@@ -36,8 +57,45 @@ export const ResultCardWrapper = styled.div`
         max-height: ${maxResultCardHeight};
         display: flex;
         flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        position: relative;
+
+        transition: all 0.2s linear;
+        transform-style: preserve-3d;
+    }
+
+    &:hover {
+        transform: rotateY(180deg);
+    }
+`
+
+export const ResultCardFront = styled(ResultCardWrapper)`
+    & {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        padding: ${resultCardPadding};
+
+        background-color: none;
+        border: 1px solid none;
+        border-radius: none;
+
+        display: flex;
+        flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
+
+        backface-visibility: hidden;
+        z-index: 2;
+    }
+`
+
+export const ResultCardBack = styled(ResultCardFront)`
+    & {
+        z-index: 1;
+        background-color: green;
+        transform: rotateY(180deg);
     }
 `
 
@@ -86,6 +144,10 @@ export const ResultCardBody = styled.div`
         padding: 0rem;
         background-color: ${resultCardBackgrounColor};
         overflow-y: hidden;
+    }
+
+    &:active {
+        border: 1px solid red;
     }
 `
 

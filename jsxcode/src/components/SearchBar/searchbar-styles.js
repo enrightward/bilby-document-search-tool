@@ -70,21 +70,3 @@ export const SearchInput = styled.input`
         outline: none;
     }
 `
-
-// .main-search-dropdown {
-//     display: flex;
-//     flex-direction: column;
-//     align-items: flex-start;
-//     border: 1px solid var(--main-search-border-color);
-//     width: var(--main-total-search-width);
-//     font-size: var(--large-font-size);
-//     font-weight: 400;
-//     padding: 0.75rem 1.5rem;
-//     margin: 0;
-//     background-color: var(--main-search-background-color);
-// }
-
-// .main-search-dropdown:empty {
-//     border: none;
-//     padding: 0;
-// }

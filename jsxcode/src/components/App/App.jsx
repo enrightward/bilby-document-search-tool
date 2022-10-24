@@ -29,17 +29,6 @@ export default function App() {
                     <Route path="/results" element={<Results />}/>
                 </Routes>
             </MainPanel>
-            {/* <div className="main-panel top-layer">
-                <Routes>
-                    <Route path="/" element={<MainSearchBar/>}/>
-                    <Route path="/about" element={<About/>}/>
-                    <Route path="/signup" element={<SignUp/>}/>
-                    <Route path="/datasets" element={<Datasets/>}/>
-                    <Route path="/models" element={<Models/>}/>
-                    <Route path="/newsletters" element={<Newsletters/>}/>
-                    <Route path="/results" element={<Results />}/>
-                </Routes>
-            </div> */}
         </>
     )
 }
