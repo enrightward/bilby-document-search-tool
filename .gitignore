@@ -10,6 +10,7 @@
 
 /jsxcode/package-lock.json
 /jsxcode/src/img/
+/jsxcode/src/scratch/
 
 # testing
 /jsxcode/coverage
