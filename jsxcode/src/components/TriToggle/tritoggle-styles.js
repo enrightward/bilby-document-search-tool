@@ -11,6 +11,7 @@ import {
     TriSwitchSelectedTextColor,
     TriSwitchSelectedButtonColor,
     TriSwitchSelectedBorderColor,
+    TriSwitchMoveDuration,
 } from "../styleSettings.js"
 
 const computeLabelOffset = (selectedLanguage) => {
@@ -103,5 +104,5 @@ export const SwitchLabelStyle = styled.span`
     border: 1px solid ${TriSwitchSelectedBorderColor};
     background: ${TriSwitchSelectedButtonColor};
     font-size: ${TriSwitchFontSize};
-    transition: left 0.1s ease-out;
+    transition: left ${TriSwitchMoveDuration} ease-out;
 `

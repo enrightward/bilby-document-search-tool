@@ -72,6 +72,8 @@ export const resultCardTitleBuffer = "0.5rem"
 export const webLinkColor = "hsl(220, 100%, 70%)"
 export const webLinkFontSize = "0.85rem"
 export const webLinkFontWeight = 600
+export const resultCardFlipDuration = "0.125s"
+export const resultCardHeaderPadding = "0.5rem"
 
 // TriToggle
 
@@ -79,16 +81,14 @@ export const TriSwitchWidth = "100px"
 export const TriSwitchButtonWidth = `calc(${TriSwitchWidth} / 3)`
 export const TriSwitchHeight = "20px"
 export const TriSwitchborderRadiusProportion = 4
-
 export const TriSwitchFontSize = "0.6rem"
-
 export const TriSwitchButtonBackgroundColor = "#666"
 export const TriSwitchBorderColor = "#aaa"
 export const TriSwitchTextColor = "#999"
-
 export const TriSwitchSelectedTextColor = "white"
 export const TriSwitchSelectedBorderColor = "hsla(131, 68%, 59%, 1)"
 export const TriSwitchSelectedButtonColor = "hsla(131, 68%, 28%, 1)"
+export const TriSwitchMoveDuration = "0.125s"
 
 // Metadata button
 

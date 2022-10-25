@@ -19,7 +19,6 @@ import {
 export default function ResultCard( props ) {
     const languageOptions = ["EN", "\u00BD", "中文"]
     const [language, setLanguage] = useState("\u00BD")
-
     const [flipState, setFlipState] = useState("front")
     
     const handleChange = (val) => {

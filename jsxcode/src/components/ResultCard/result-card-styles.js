@@ -7,6 +7,7 @@ import {
     resultCardBackgroundColor,
     resultCardHeaderBackgroundColor,
     resultCardHeaderHeight,
+    resultCardHeaderPadding,
     resultCardBorderColor,
     resultCardTitleColor,
     resultCardBorderRadius,
@@ -21,6 +22,7 @@ import {
     webLinkFontWeight,
     minResultCardHeight,
     maxResultCardHeight,
+    resultCardFlipDuration,
 } from "../styleSettings.js"
 
 export const ResultCardOuter = styled.div`
@@ -48,7 +50,7 @@ export const ResultCardHeader = styled.div`
         align-items: center;
         width: 100%;
         height: ${resultCardHeaderHeight};
-        padding: 0 0.5rem;
+        padding: 0 ${resultCardHeaderPadding};
         background-color: ${resultCardHeaderBackgroundColor};
         border-radius: ${resultCardBorderRadius} ${resultCardBorderRadius} 0 0;
         border-bottom: 1px solid ${resultCardBorderColor};
@@ -100,7 +102,7 @@ export const ResultCardFlipperInner = styled.div`
         width: 100%;
         height: 100%;
         background-color: none;
-        transition: all 0.1s linear;
+        transition: all ${resultCardFlipDuration} linear;
         transform-style: preserve-3d;
         transform: rotateY(${(props) => computeRotation(props.flipState)});
     }
