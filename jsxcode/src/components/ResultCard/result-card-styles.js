@@ -41,7 +41,9 @@ import {
 //     }
 // `
 
-export const ResultCardWrapper = styled.div`
+export const ResultCardWrapper = styled.div``
+
+export const ResultCard = styled.div`
     & {
         overflow: hidden;
         margin: 0.2rem 0;

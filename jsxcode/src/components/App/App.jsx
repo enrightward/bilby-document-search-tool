@@ -26,7 +26,7 @@ export default function App() {
                     <Route path="/datasets" element={<Datasets/>}/>
                     <Route path="/models" element={<Models/>}/>
                     <Route path="/newsletters" element={<Newsletters/>}/>
-                    <Route path="/results" element={<Results />}/>
+                    <Route path="/results" element={<Results/>}/>
                 </Routes>
             </MainPanel>
         </>
