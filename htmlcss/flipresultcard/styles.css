@@ -1,0 +1,137 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: rgb(120, 120, 120);
+}
+
+.card-outer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 300px;
+    height: 220px;
+}
+
+.card-outer:hover .card-flipper {
+    transform: rotateY(180deg);
+}
+
+.card-header {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    padding: 0.5rem;
+    justify-content: space-between;
+    align-items: center;
+    width: inherit;
+    height: 15%;
+    background-color: rgb(248, 118, 140);
+    color: white;
+    font-size: 1.5rem;
+}
+
+.btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 22px;
+    background-color: rgb(138, 118, 248);
+    border: 1px solid rgb(85, 0, 105);
+    border-radius: 3px;
+    color: white;
+    font-size: 0.7rem;
+    cursor: pointer;
+}
+
+.card-flipper {
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: rgb(59, 59, 162);
+
+    transition: all 0.2s linear;
+    transform-style: preserve-3d;
+}
+
+.card-front, .card-back {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.card-front {
+    padding: 0.5rem;
+    background-color: rgb(108, 157, 34);
+    backface-visibility: hidden;
+    z-index: 2;
+}
+
+.card-back {
+    transform: rotateY(180deg);
+    background-color: rgb(146, 26, 161);
+    backface-visibility: visible;
+    z-index: 1;
+}
+
+.card-front-inner {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    height: 100%;
+    background-color: orange;
+    overflow-y: hidden;
+}
+
+.col-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-size: 1.0rem;
+    padding: 0;
+    margin: 0.5rem;
+}
+
+.card-left-col, .card-right-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: blue;
+    text-align: justify;
+    font-size: 0.8rem;
+}
+
+.card-outer:hover .card-flipper {
+    transform: rotateY(180deg);
+}

@@ -62,14 +62,11 @@ export const resultCardSeparation = "0.3rem"
 export const resultCardBackgroundColor = "#111"
 export const resultCardBorderColor = "#888"
 export const resultCardTitleColor = "#888"
-
 export const resultCardHeaderBackgroundColor = "#111"
-
 export const resultCardColumnGap = "0.5rem"
 export const resultCardTopTextIndent = "0.2rem"
 export const resultCardBottomTextIndent = "0.75rem"
 export const resultCardSideTextIndent = "0.6rem"
-
 export const resultCardTitleBuffer = "0.5rem"
 export const webLinkColor = "hsl(220, 100%, 70%)"
 export const webLinkFontSize = "0.85rem"
@@ -91,3 +88,14 @@ export const TriSwitchTextColor = "#999"
 export const TriSwitchSelectedTextColor = "white"
 export const TriSwitchSelectedBorderColor = "hsla(131, 68%, 59%, 1)"
 export const TriSwitchSelectedButtonColor = "hsla(131, 68%, 28%, 1)"
+
+// Metadata button
+
+export const metaDataFontSize = "0.8rem"
+export const metaDataPadding = "0.2rem 0.5rem"
+export const metaDataFontWeight = 800
+export const metaDataBackgrounColor = "#eee"
+export const metaDataBorderColor = "#aaa"
+export const metaDataBorderRadius = "3px"
+export const metaDataWidth = "35px"
+export const metaDataHeight = "20px"

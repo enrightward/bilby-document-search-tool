@@ -5,7 +5,7 @@ import {
     SwitchLabelStyle,
 } from "./tritoggle-styles.js"
 
-export default function NewTriToggle({ selectedLanguage, languageOptions, handleChange }) {
+export default function TriToggle({ selectedLanguage, languageOptions, handleChange }) {
     return (
         <SwitchWrapperStyle>
             {languageOptions.map((language) => {
