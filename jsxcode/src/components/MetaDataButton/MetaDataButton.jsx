@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 
 import {
     MetaDataButtonStyle,
@@ -6,10 +6,10 @@ import {
 
 const metaDataIcon = "</>"
 
-export default function MetaDataButton( props ) {
+export default function MetaDataButton( { onFlipClick } ) {
 
     return (
-        <MetaDataButtonStyle>
+        <MetaDataButtonStyle onMouseDown={() => onFlipClick()}>
         {metaDataIcon}
         </MetaDataButtonStyle>
     )

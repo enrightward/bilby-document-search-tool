@@ -6,6 +6,7 @@ import {
     resultCardFontWeight,
     resultCardBackgroundColor,
     resultCardHeaderBackgroundColor,
+    resultCardHeaderHeight,
     resultCardBorderColor,
     resultCardTitleColor,
     resultCardBorderRadius,
@@ -46,7 +47,7 @@ export const ResultCardHeader = styled.div`
         justify-content: space-between;
         align-items: center;
         width: 100%;
-        height: 15%;
+        height: ${resultCardHeaderHeight};
         padding: 0 0.5rem;
         background-color: ${resultCardHeaderBackgroundColor};
         border-radius: ${resultCardBorderRadius} ${resultCardBorderRadius} 0 0;
@@ -73,12 +74,21 @@ export const ResultCardFlipper = styled.div`
         align-items: center;
         width: 100%;
         background-color: none;
-
-        &:hover .card-flipper-inner {
-            transform: rotateY(180deg);
-        }
     }
 `
+
+// border-radius: ${(props) => computeBorderRadii(props.selectedLanguage)};
+
+const computeRotation = (flipState) => {
+    let rotation
+
+    if (flipState === "front") {
+        rotation = "0deg"
+    } else if (flipState === "back") {
+        rotation = "180deg"
+    }
+    return rotation
+}
 
 export const ResultCardFlipperInner = styled.div`
     & {
@@ -90,8 +100,9 @@ export const ResultCardFlipperInner = styled.div`
         width: 100%;
         height: 100%;
         background-color: none;
-        transition: all 0.2s linear;
+        transition: all 0.1s linear;
         transform-style: preserve-3d;
+        transform: rotateY(${(props) => computeRotation(props.flipState)});
     }
 `
 

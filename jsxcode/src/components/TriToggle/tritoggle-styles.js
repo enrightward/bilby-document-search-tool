@@ -34,7 +34,6 @@ const computeLabelOffset = (selectedLanguage) => {
             break
     }
 
-    console.log("offset = ", offset)
     return offset
 }
 
@@ -59,6 +58,7 @@ const computeBorderRadii = (selectedLanguage) => {
         topRight = round
         bottomRight = round
     }
+
     const borderRadius = `${topLeft} ${topRight} ${bottomRight} ${bottomLeft}`
     return borderRadius
 }

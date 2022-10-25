@@ -19,25 +19,32 @@ import {
 export default function ResultCard( props ) {
     const languageOptions = ["EN", "\u00BD", "中文"]
     const [language, setLanguage] = useState("\u00BD")
+
+    const [flipState, setFlipState] = useState("front")
     
     const handleChange = (val) => {
         setLanguage(val)
     }
 
-    const flipCard = () => {
+    const onFlipClick = (flipState) => {
+        if (flipState === "front") {
+            setFlipState("back")
+        } else if (flipState === "back") {
+            setFlipState("front")
+        }
         console.log("flip card")
     }
 
     return (
         <ResultCardOuter className="outer">
             <ResultCardHeader className="header">
-                <MetaDataButton onClick={() => flipCard()}/>
+                <MetaDataButton onFlipClick={() => onFlipClick(flipState)}/>
                 <WebLink href="https://people.cn">https://people.cn</WebLink>
                 <TriToggle key={props.listId} handleChange={handleChange} languageOptions={languageOptions} selectedLanguage={language} />
                 <ResultCardCheckBox/>
             </ResultCardHeader>
             <ResultCardFlipper className="card-flipper">
-                <ResultCardFlipperInner className="card-flipper-inner">
+                <ResultCardFlipperInner flipState={flipState} className="card-flipper-inner">
                     <ResultCardFront>
                         <ResultCardFrontInner selectedLanguage={language}>
                             <ResultCardBodyColumn selectedLanguage={language} columnLanguage={"EN"}>

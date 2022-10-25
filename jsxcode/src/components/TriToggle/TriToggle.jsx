@@ -10,9 +10,9 @@ export default function TriToggle({ selectedLanguage, languageOptions, handleCha
         <SwitchWrapperStyle>
             {languageOptions.map((language) => {
                 return (
-                    <SwitchButtonStyle 
-                        language={language} 
-                        onClick={() => handleChange(language)}>
+                    <SwitchButtonStyle
+                        language={language}
+                        onMouseDown={() => handleChange(language)}>
                         {language}
                     </SwitchButtonStyle>
                 )
