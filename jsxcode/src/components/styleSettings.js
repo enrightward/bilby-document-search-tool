@@ -58,15 +58,19 @@ export const resultCardWidth = "95%"
 export const resultCardBorderRadius = "3px"
 export const resultCardFontSize = "0.8rem"
 export const resultCardFontWeight = 400
-export const resultCardPadding = "0rem 0.7rem"
-export const resultCardBackgrounColor = "#111"
-export const resultCardBorderColor = "#aaa"
+export const resultCardSeparation = "0.3rem"
+export const resultCardBackgroundColor = "#111"
+export const resultCardBorderColor = "#888"
 export const resultCardTitleColor = "#888"
-export const resultCardColumnGap = "0.9rem"
-export const resultCardTopGap = "0.5rem"
-export const resultCardBottomGap = "1.0rem"
+
+export const resultCardHeaderBackgroundColor = "#111"
+
+export const resultCardColumnGap = "0.5rem"
+export const resultCardTopTextIndent = "0.2rem"
+export const resultCardBottomTextIndent = "0.75rem"
+export const resultCardSideTextIndent = "0.6rem"
+
 export const resultCardTitleBuffer = "0.5rem"
-export const resultCardHeaderPadding = "0.5rem"
 export const webLinkColor = "hsl(220, 100%, 70%)"
 export const webLinkFontSize = "0.85rem"
 export const webLinkFontWeight = 600

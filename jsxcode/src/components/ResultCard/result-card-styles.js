@@ -1,19 +1,20 @@
 import styled from "styled-components"
 
 import {
-    resultCardPadding,
+    resultCardSeparation,
     resultCardFontSize,
     resultCardFontWeight,
-    resultCardBackgrounColor,
+    resultCardBackgroundColor,
+    resultCardHeaderBackgroundColor,
     resultCardBorderColor,
     resultCardTitleColor,
     resultCardBorderRadius,
     resultCardWidth,
     resultCardColumnGap,
-    resultCardTopGap,
-    resultCardBottomGap,
+    resultCardTopTextIndent,
+    resultCardBottomTextIndent,
+    resultCardSideTextIndent,
     resultCardTitleBuffer,
-    resultCardHeaderPadding,
     webLinkColor,
     webLinkFontSize,
     webLinkFontWeight,
@@ -21,73 +22,52 @@ import {
     maxResultCardHeight,
 } from "../styleSettings.js"
 
-// export const ResultCardWrapper = styled.div`
-//     & {
-//         overflow: hidden;
-//         margin: 0.2rem 0;
-//         padding: ${resultCardPadding};
-//         font-size: ${resultCardFontSize};
-//         font-weight: ${resultCardFontWeight};
-//         background-color: ${resultCardBackgrounColor};
-//         border: 1px solid ${resultCardBorderColor};
-//         border-radius: ${resultCardBorderRadius};
-//         width: ${resultCardWidth};
-//         min-height: ${minResultCardHeight};
-//         max-height: ${maxResultCardHeight};
-//         display: flex;
-//         flex-direction: column;
-//         justify-content: flex-start;
-//         align-items: flex-start;
-//     }
-// `
-
-export const ResultCardWrapper = styled.div``
-
-export const ResultCard = styled.div`
+export const ResultCardOuter = styled.div`
     & {
-        overflow: hidden;
-        margin: 0.2rem 0;
-        // padding: ${resultCardPadding};
-        padding: 0;
-        font-size: ${resultCardFontSize};
-        font-weight: ${resultCardFontWeight};
-        background-color: ${resultCardBackgrounColor};
-        border: 1px solid ${resultCardBorderColor};
-        border-radius: ${resultCardBorderRadius};
-        width: ${resultCardWidth};
-        min-height: ${minResultCardHeight};
-        max-height: ${maxResultCardHeight};
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: flex-start;
-        position: relative;
-
-        transition: all 0.2s linear;
-        transform-style: preserve-3d;
+        align-items: center;
+        width: ${resultCardWidth};
+        margin: ${resultCardSeparation} 0;
+        min-height: ${minResultCardHeight};
+        max-height: ${maxResultCardHeight};
+        background-color: none;
+        perspective: 10000px;
     }
 
-    &:hover {
+    &:hover .inner {
         transform: rotateY(180deg);
     }
 `
 
-export const ResultCardFront = styled(ResultCardWrapper)`
+export const ResultCardInner = styled.div`
     & {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        padding: ${resultCardPadding};
-
-        background-color: none;
-        border: 1px solid none;
-        border-radius: none;
-
+        position: relative;
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        background-color: ${resultCardBackgroundColor};
+        transition: all 0.2s linear;
+        transform-style: preserve-3d;
+    }
+`
 
+export const ResultCardFront = styled.div`
+    & {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        /* header starts up top of page */
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        border-radius: ${resultCardBorderRadius};
+        border: 1px solid ${resultCardBorderColor};
         backface-visibility: hidden;
         z-index: 2;
     }
@@ -96,30 +76,24 @@ export const ResultCardFront = styled(ResultCardWrapper)`
 export const ResultCardBack = styled(ResultCardFront)`
     & {
         z-index: 1;
-        background-color: green;
+        background-color: rgb(34, 92, 167);
+        backface-visibility: visible;
         transform: rotateY(180deg);
     }
 `
 
 export const ResultCardHeader = styled.div`
     & {
-        margin: 0;
-        padding: ${resultCardHeaderPadding};
-        width 100%;
-        border-bottom: 1px solid #aaa;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-    }
-`
-
-export const WebLink = styled.a`
-    & {
-        color: ${webLinkColor};
-        font-size: ${webLinkFontSize};
-        font-weight: ${webLinkFontWeight};
-        text-decoration: underline;
+        width: 100%;
+        height: 20%;
+        padding: 0 10px;
+        background-color: ${resultCardHeaderBackgroundColor};
+        border-radius: ${resultCardBorderRadius} ${resultCardBorderRadius} 0 0;
+        border-bottom: 1px solid black;
     }
 `
 
@@ -136,40 +110,41 @@ export const ResultCardTitle = styled.h3`
     }
 `
 
-export const ResultCardBody = styled.div`
+export const WebLink = styled.a`
     & {
-        display: flex;
-        flex: 1;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        padding: 0rem;
-        background-color: ${resultCardBackgrounColor};
-        overflow-y: hidden;
-    }
-
-    &:active {
-        border: 1px solid red;
+        color: ${webLinkColor};
+        font-size: ${webLinkFontSize};
+        font-weight: ${webLinkFontWeight};
+        text-decoration: underline;
     }
 `
 
-const computeGap = (selectedLanguage) => {
-    const gap = selectedLanguage === "\u00BD" ? resultCardColumnGap : "0rem"
-    return gap
-}
+export const ResultCardBody = styled.div`
+    & {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        width: 100%;
+        padding: ${resultCardTopTextIndent} ${resultCardSideTextIndent}
+            ${resultCardBottomTextIndent} ${resultCardSideTextIndent};
+        border-radius: 0 0 ${resultCardBorderRadius} ${resultCardBorderRadius};
+        overflow-y: scroll;
+    }
+`
 
 export const ResultCardBodyInner = styled.div`
     & {
-        width: 100%;
-        height: 95%;
         display: flex;
         flex-direction: row;
-        gap: ${(props) => computeGap(props.selectedLanguage)};
         justify-content: center;
-        align-items: flex-start;
-        padding: ${resultCardTopGap} 0 ${resultCardBottomGap} 0;
-        background-color: ${resultCardBackgrounColor};
-        overflow-y: hidden;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        gap: ${resultCardColumnGap};
+        font-size: ${resultCardFontSize};
+        font-weight: ${resultCardFontWeight};
     }
 `
 
@@ -177,13 +152,12 @@ export const ResultCardBodyColumn = styled.div`
     & {
         display: flex;
         flex-direction: column;
-        align-items: center;
         justify-content: flex-start;
-        text-align: justify;
-        margin: 0;
-        padding: 0;
+        align-items: center;
+        width: 100%;
+        height: 100%;
         overflow-y: hidden;
-        background-color: ${resultCardBackgrounColor};
+        text-align: justify;
     }
 `
 
