@@ -19,8 +19,7 @@ import {
     triptychColumnBackgroundColour,
 } from "../components/styleSettings.js"
 
-
-export default function Results( {searchQuery, setSearchQuery, matches} ) {
+export default function Results( {searchQuery, setSearchQuery, matches, setMatches} ) {
 
     const cards = matches.map( (match, index) => {
         return (
@@ -46,8 +45,9 @@ export default function Results( {searchQuery, setSearchQuery, matches} ) {
                 <SearchBar 
                     width={resultSearchBarWidth}
                     height={searchBarHeight}
-                    query={searchQuery}
-                    setQuery={setSearchQuery}
+                    searchQuery={searchQuery}
+                    setSearchQuery={setSearchQuery}
+                    setMatches={setMatches}
                 />
                 <ResultsUnderPanel>
                     <BlueButton text="sort by..."/>
