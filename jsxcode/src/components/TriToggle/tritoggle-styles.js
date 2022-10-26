@@ -8,6 +8,7 @@ import {
     TriSwitchBorderColor,
     TriSwitchTextColor,
     TriSwitchFontSize,
+    TriSwitchLargeFontSize,
     TriSwitchSelectedTextColor,
     TriSwitchSelectedButtonColor,
     TriSwitchSelectedBorderColor,
@@ -72,6 +73,30 @@ export const SwitchWrapperStyle = styled.div`
     justify-content: center;
 `
 
+const computeLabelFontSize = (selectedLanguage) => {
+    let fontSize
+
+    switch (selectedLanguage) {
+        case "EN":
+            fontSize = TriSwitchFontSize
+            break
+
+        case "\u00BD":
+            fontSize = TriSwitchLargeFontSize
+            break
+
+        case "中文":
+            fontSize = TriSwitchFontSize
+            break
+
+        default:
+            fontSize = TriSwitchFontSize
+            break
+    }
+
+    return fontSize
+}
+
 export const SwitchButtonStyle = styled.button`
     display: flex;
     flex-direction: row;
@@ -83,7 +108,7 @@ export const SwitchButtonStyle = styled.button`
     border-radius: ${(props) => computeBorderRadii(props.language)};
     border: 1px solid ${TriSwitchBorderColor};
     color: ${TriSwitchTextColor};
-    font-size: ${TriSwitchFontSize};
+    font-size: ${(props) => computeLabelFontSize(props.language)};
 
     &:hover {
         cursor: pointer;
@@ -103,6 +128,6 @@ export const SwitchLabelStyle = styled.span`
     border-radius: ${(props) => computeBorderRadii(props.selectedLanguage)};
     border: 1px solid ${TriSwitchSelectedBorderColor};
     background: ${TriSwitchSelectedButtonColor};
-    font-size: ${TriSwitchFontSize};
+    font-size: ${(props) => computeLabelFontSize(props.selectedLanguage)};
     transition: left ${TriSwitchMoveDuration} ease-out;
 `

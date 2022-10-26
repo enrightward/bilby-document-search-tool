@@ -1,7 +1,8 @@
-import React from "react"
+import React, { useState } from "react"
 import { Route, Routes } from "react-router-dom"
 
 import NavBar from "../NavBar/NavBar.jsx"
+
 import Search from "../../pages/Search.jsx"
 import About from "../../pages/About.jsx"
 import SignUp from "../../pages/SignUp.jsx"
@@ -15,18 +16,21 @@ import {
 } from './app-styles.js'
 
 export default function App() {
+    const [searchQuery, setSearchQuery] = useState("")
+    const [matches, setMatches] = useState([])
+
     return (
         <>
             <NavBar/>
             <MainPanel>
                 <Routes>
-                    <Route path="/" element={<Search/>}/>
+                    <Route path="/" element={<Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} setMatches={setMatches}/>}/>
                     <Route path="/about" element={<About/>}/>
                     <Route path="/signup" element={<SignUp/>}/>
                     <Route path="/datasets" element={<Datasets/>}/>
                     <Route path="/models" element={<Models/>}/>
                     <Route path="/newsletters" element={<Newsletters/>}/>
-                    <Route path="/results" element={<Results/>}/>
+                    <Route path="/results" element={<Results searchQuery={searchQuery} setSearchQuery={setSearchQuery} matches={matches} />}/>
                 </Routes>
             </MainPanel>
         </>

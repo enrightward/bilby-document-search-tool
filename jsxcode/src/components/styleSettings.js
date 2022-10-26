@@ -83,7 +83,10 @@ export const TriSwitchWidth = "100px"
 export const TriSwitchButtonWidth = `calc(${TriSwitchWidth} / 3)`
 export const TriSwitchHeight = "20px"
 export const TriSwitchborderRadiusProportion = 4
+
 export const TriSwitchFontSize = "0.6rem"
+export const TriSwitchLargeFontSize = "0.9rem"
+
 export const TriSwitchButtonBackgroundColor = "#666"
 export const TriSwitchBorderColor = "#aaa"
 export const TriSwitchTextColor = "#999"

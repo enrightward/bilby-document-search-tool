@@ -14,31 +14,20 @@ import {
     searchFieldName,
 } from "../styleSettings.js"
 
-
-// const findMatches = (query, searchData) => {
-//     const matches = searchData.filter(item => {
-//         const searchTerm = query.toLowerCase()
-//         const fullName = item.full_name.toLowerCase()
-//         return searchTerm && fullName.includes(searchTerm) && fullName !== searchTerm
-//     })
-//     .slice(0, autoCompleteLimit)
-//     return matches   
-// }
-
 const findMatches = (query, searchData) => {
-    let matches = searchData.filter(item => {
+    let result = searchData.filter(item => {
         const searchTerm = query.toLowerCase()
         const fieldEntry = item[searchFieldName].toLowerCase()
         const boolFilter = searchTerm && fieldEntry.includes(searchTerm) && fieldEntry !== searchTerm
         return boolFilter
     })
-    console.log("len(matches): ", matches.length)
-    matches = matches.slice(0, autoCompleteLimit)
-    return matches
+    console.log("len(matches): ", result.length)
+    result = result.slice(0, autoCompleteLimit)
+    return result
 }
 
-export default function SearchBarDropdown( { query, setQuery } ) {
-
+export default function SearchBarDropdown( { searchQuery, setSearchQuery }) {
+    
     return (
         <SearchDropdownWrapper
             borderColor={darkBorderColor}
@@ -46,11 +35,11 @@ export default function SearchBarDropdown( { query, setQuery } ) {
             fontSize={regularFontSize}
             backgroundColor={textDarkBackgroundColor}
         >
-        {findMatches(query, searchData).map((item, counter) => (
+        {findMatches(searchQuery, searchData).map((item, counter) => (
                 <MatchWrapper 
                     key={counter}
                     counter={counter}
-                    onClick={() => {setQuery(item[searchFieldName])}}
+                    onClick={() => {setSearchQuery(item[searchFieldName])}}
                 >
                     {item[searchFieldName]}
                 </MatchWrapper>

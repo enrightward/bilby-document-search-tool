@@ -1,7 +1,10 @@
-import React, { useState } from "react"
+import React from "react"
 import SearchBar from "../components/SearchBar/SearchBar.jsx"
 import SearchBarDropdown from "../components/SearchBarDropdown/SearchBarDropdown.jsx"
-import { SearchArea, SearchLabel } from "./search-page-styles.js"
+import { 
+    SearchArea, 
+    SearchLabel, 
+} from "./search-page-styles.js"
 
 import { 
     regularFontSize, 
@@ -12,8 +15,7 @@ import {
     textDarkBackgroundColor,
 } from "../components/styleSettings.js"
 
-export default function SearchPage() {
-    const [query, setQuery] = useState("")
+export default function SearchPage( {searchQuery, setSearchQuery, setMatches} ) {
 
     return (
         <SearchArea>
@@ -23,12 +25,13 @@ export default function SearchPage() {
             <SearchBar 
                 width={searchBarWidth}
                 height={searchBarHeight}
-                query={query}
-                setQuery={setQuery}
+                searchQuery={searchQuery}
+                setSearchQuery={setSearchQuery}
+                setMatches={setMatches}
             />
             <SearchBarDropdown
-                query={query} 
-                setQuery={setQuery}
+                searchQuery={searchQuery} 
+                setSearchQuery={setSearchQuery}
                 width={searchBarWidth}
                 fontSize={regularFontSize}
                 borderColor={darkBorderColor}

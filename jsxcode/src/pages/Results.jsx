@@ -1,5 +1,4 @@
-import React, { useState } from "react"
-import { useLocation } from "react-router-dom"
+import React from "react"
 import ResultCard from "../components/ResultCard/ResultCard.jsx"
 import BlueButton from "../components/BlueButton/BlueButton.jsx"
 import DatasetPanel from "../components/DatasetPanel/DatasetPanel.jsx"
@@ -18,18 +17,23 @@ import {
     lightBorderColor,
     cardBorderRadius,
     triptychColumnBackgroundColour,
-    numResults,
 } from "../components/styleSettings.js"
 
-export default function Results() {
-    const [query, setQuery] = useState("")
-    const location = useLocation()
-    const searchTerm = location.state.searchTerm
-    const cards = []
 
-    for (let i = 0; i < numResults; i++) {
-        cards.push(<ResultCard searchTerm={searchTerm} key={i} listId={i} />)
-    }
+export default function Results( {searchQuery, setSearchQuery, matches} ) {
+
+    const cards = matches.map( (match, index) => {
+        return (
+            <ResultCard
+                key={index}
+                listId={index}
+                enTitle={match["en_title"]}
+                zhTitle={match["title"]}
+                enText={match["en_text"]}
+                zhText={match["text"]}
+            />
+        )
+    })
 
     return (
         <>
@@ -42,8 +46,8 @@ export default function Results() {
                 <SearchBar 
                     width={resultSearchBarWidth}
                     height={searchBarHeight}
-                    query={query}
-                    setQuery={setQuery}
+                    query={searchQuery}
+                    setQuery={setSearchQuery}
                 />
                 <ResultsUnderPanel>
                     <BlueButton text="sort by..."/>

@@ -16,19 +16,38 @@ import {
     searchBackgroundColor,
     basicSearchIcon,
     advancedSearchIcon,
+    searchFieldName,
+    autoCompleteLimit,
+    searchData,
 } from "../styleSettings.js"
 
-export default function SearchBar( { query, setQuery, width, height } ) {
+
+const findMatches = (searchQuery, searchData) => {
+    let result = searchData.filter(item => {
+        const searchTerm = searchQuery.toLowerCase()
+        const fieldEntry = item[searchFieldName].toLowerCase()
+        const boolFilter = searchTerm && fieldEntry.includes(searchTerm) && fieldEntry !== searchTerm
+        return boolFilter
+    })
+    console.log("len(matches): ", result.length)
+    result = result.slice(0, autoCompleteLimit)
+    return result
+}
+
+export default function SearchBar( { searchQuery, setSearchQuery, setMatches, width, height } ) {
     const navigate = useNavigate()
 
     const onChange = (event) => {
-        setQuery(event.target.value)
+        setSearchQuery(event.target.value)
     }
 
-    const onBasicSearch = (searchTerm) => {
-        console.log("searchTerm", searchTerm)
-        setQuery(searchTerm)
-        navigate("/results", { state: { searchTerm: searchTerm } })
+    const onBasicSearchClick = (searchQuery, setMatches) => {
+        console.log("searchQuery", searchQuery)
+        let theseMatches = findMatches(searchQuery, searchData)
+        setSearchQuery(searchQuery)
+        setMatches(theseMatches)
+        console.log("theseMatches", theseMatches)
+        navigate("/results", { state: { searchQuery: searchQuery } })
     }
 
     return (
@@ -37,13 +56,13 @@ export default function SearchBar( { query, setQuery, width, height } ) {
                 borderColor={darkBorderColor}
                 hoverColor={searchButtonHoverColor}
                 height={height}
-                onClick={() => onBasicSearch(query)}
+                onClick={() => onBasicSearchClick(searchQuery, setMatches)}
             >
                 <SearchButtonSpan searchIcon={basicSearchIcon}/>
             </LeftSearchButton>
             <SearchInput 
                 type="text" 
-                value={query}
+                value={searchQuery}
                 height={height}
                 width={width}
                 fontSize={regularFontSize}
