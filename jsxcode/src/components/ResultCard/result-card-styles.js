@@ -79,8 +79,6 @@ export const ResultCardFlipper = styled.div`
     }
 `
 
-// border-radius: ${(props) => computeBorderRadii(props.selectedLanguage)};
-
 const computeRotation = (flipState) => {
     let rotation
 

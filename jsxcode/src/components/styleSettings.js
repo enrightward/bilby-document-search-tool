@@ -34,7 +34,9 @@ export const basicSearchIcon =
     "https://img.icons8.com/glyph-neue/64/ffffff/search--v1.png"
 export const advancedSearchIcon =
     "https://img.icons8.com/ios/50/FFFFFF/sorting-options--v1.png"
-export var searchData = require("../data/MOCK_DATA.json")
+// export var searchData = require("../data/MOCK_DATA.json")
+export var searchData = require("../data/REAL_DATA_TEST.json")
+export const searchFieldName = "en_title"
 
 // Result search bar
 
