@@ -11,7 +11,7 @@ import {
 
 import {
     regularFontSize,
-    darkBorderColor, 
+    darkBorderColor,
     searchButtonHoverColor,
     searchBackgroundColor,
     basicSearchIcon,
@@ -21,18 +21,9 @@ import {
     searchData,
 } from "../styleSettings.js"
 
-
-const findMatches = (searchQuery, searchData) => {
-    let result = searchData.filter(item => {
-        const searchTerm = searchQuery.toLowerCase()
-        const fieldEntry = item[searchFieldName].toLowerCase()
-        const boolFilter = searchTerm && fieldEntry.includes(searchTerm) && fieldEntry !== searchTerm
-        return boolFilter
-    })
-    console.log("len(matches): ", result.length)
-    result = result.slice(0, autoCompleteLimit)
-    return result
-}
+import {
+    findMatches,
+} from "../../utils/utils.js"
 
 export default function SearchBar( { searchQuery, setSearchQuery, setMatches, width, height } ) {
     const navigate = useNavigate()
@@ -43,7 +34,12 @@ export default function SearchBar( { searchQuery, setSearchQuery, setMatches, wi
 
     const onBasicSearchClick = (searchQuery, setMatches) => {
         console.log("searchQuery", searchQuery)
-        let theseMatches = findMatches(searchQuery, searchData)
+        let theseMatches = findMatches(
+            searchQuery,
+            searchFieldName,
+            searchData,
+            autoCompleteLimit,
+        )
         setSearchQuery(searchQuery)
         setMatches(theseMatches)
         console.log("theseMatches", theseMatches)

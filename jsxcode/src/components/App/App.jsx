@@ -15,8 +15,13 @@ import {
     MainPanel
 } from './app-styles.js'
 
+import {
+    defaultSearchQuery,
+} from '../styleSettings.js'
+
+
 export default function App() {
-    const [searchQuery, setSearchQuery] = useState("")
+    const [searchQuery, setSearchQuery] = useState(defaultSearchQuery)
     const [matches, setMatches] = useState([])
 
     return (

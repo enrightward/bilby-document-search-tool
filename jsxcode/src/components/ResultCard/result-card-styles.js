@@ -23,7 +23,33 @@ import {
     minResultCardHeight,
     maxResultCardHeight,
     resultCardFlipDuration,
+    resultCardHighlightColor,
+    resultCardHighlightBoxShadow,
 } from "../styleSettings.js"
+
+const computeHighlightBorderColor = (highlighted) => {
+    let highlightBorderColor
+
+    if (highlighted) {
+        highlightBorderColor = resultCardHighlightColor
+    } else {
+        highlightBorderColor = resultCardBorderColor
+    }
+
+    return highlightBorderColor
+}
+
+const computeHighlightBoxShadow = (highlighted) => {
+    let highlightBoxShadow
+
+    if (highlighted) {
+        highlightBoxShadow = resultCardHighlightBoxShadow
+    } else {
+        highlightBoxShadow = "none"
+    }
+
+    return highlightBoxShadow
+}
 
 export const ResultCardOuter = styled.div`
     & {
@@ -35,12 +61,27 @@ export const ResultCardOuter = styled.div`
         margin: ${resultCardSeparation} 0;
         min-height: ${minResultCardHeight};
         max-height: ${maxResultCardHeight};
-        border: 1px solid ${resultCardBorderColor};
+        // border: 1px solid ${resultCardBorderColor};
+        border: 1px solid ${(props) =>
+            computeHighlightBorderColor(props.highlighted)};
+        box-shadow: ${(props) => computeHighlightBoxShadow(props.highlighted)};
         border-radius: ${resultCardBorderRadius};
         background-color: none;
         perspective: 10000px;
     }
+
+    // &:focus {
+    //     border: 1px solid rgba(81, 203, 238, 1);
+    //     box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+    // }
 `
+
+// input[type=text]:focus, textarea:focus {
+//     box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+//     padding: 3px 0px 3px 3px;
+//     margin: 5px 1px 3px 0px;
+//     border: 1px solid rgba(81, 203, 238, 1);
+// }
 
 export const ResultCardHeader = styled.div`
     & {

@@ -9,6 +9,7 @@ export const veryLargeFontSize = "1.6rem"
 export const darkBorderColor = "#323232"
 export const lightBorderColor = "#aaa"
 export const textDarkBackgroundColor = "#222"
+export const defaultSearchQuery = "sh"
 
 // NavBar
 
@@ -76,6 +77,10 @@ export const webLinkFontSize = "0.85rem"
 export const webLinkFontWeight = 600
 export const resultCardFlipDuration = "0.125s"
 export const resultCardHeaderPadding = "0.5rem"
+export const resultCardHighlightColor = "rgba(81, 203, 238, 1)"
+export const resultCardHighlightBoxShadow = `0 0 10px ${resultCardHighlightColor}`
+
+export const resultCardURLLength = 20
 
 // TriToggle
 

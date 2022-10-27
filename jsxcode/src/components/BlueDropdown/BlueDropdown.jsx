@@ -5,8 +5,8 @@ export default function BlueDropdown() {
 
     return (
         <>
-            <select className="blue-button-dropdown" defaultValue={"xi"}>
-                <option value="" selected disabled hidden>select...</option>
+            <select className="blue-button-dropdown" defaultValue={""}>
+                <option value="" disabled hidden>select...</option>
                 <option value="apple">Apple supply chains</option>
                 <option value="xi">Xi Jinping</option>
                 <option value="rare-earths">rare earths</option>
