@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import TriToggle from "../TriToggle/TriToggle.jsx"
-import ResultCardCheckBox from "../CheckBox/CheckBox.jsx"
+import BilbyCheckBox from "../CheckBox/CheckBox.jsx"
 import MetaDataButton from "../MetaDataButton/MetaDataButton.jsx"
 
 import {
@@ -32,11 +32,14 @@ export default function ResultCard( {
     highlightedCardId,
     onCardClick, 
     onCardShift, 
-    inDataset, }) {
+    inDataset, 
+    checkedCards, 
+    onCardCheckboxChange, }) {
     const languageOptions = ["EN", "\u00BD", "中文"]
     const [language, setLanguage] = useState("\u00BD")
     const [flipState, setFlipState] = useState("front")
     const [belongsToDataset, setBelongsToDataset] = useState(inDataset)
+    const [checked, setChecked] = useState(false)
     
     const onTriToggleClick = (val) => {
         setLanguage(val)
@@ -76,7 +79,13 @@ export default function ResultCard( {
                     >
                         {belongsToDataset ? "Remove" : "Add"}
                     </AddToDatasetButton>
-                <ResultCardCheckBox/>
+                <BilbyCheckBox
+                    onCheckBoxChange={() => {
+                        setChecked(!checked)
+                        onCardCheckboxChange(id, checked)
+                    }}
+                    // checked={checkedCards[id]}
+                />
             </ResultCardHeader>
             <ResultCardFlipper
                 onMouseDown={() => onCardClick(id)}

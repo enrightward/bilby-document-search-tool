@@ -149,13 +149,11 @@ export const AddToDatasetButton = styled.button`
     }
 
     &:hover {
-        //background-color: hsla(217, 68%, 63%, 1);
         background-color: ${(props) =>
             computeBackgroundColor(props.belongsToDataset, "hover")};
     }
 
     &:active {
-        //background-color: hsla(217, 68%, 29%, 1);
         background-color: ${(props) =>
             computeBackgroundColor(props.belongsToDataset, "active")};
     }

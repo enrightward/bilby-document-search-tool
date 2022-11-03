@@ -1,12 +1,13 @@
 import React, { useState } from "react"
 import ResultCard from "../components/ResultCard/ResultCard.jsx"
-import BlueButton from "../components/BlueButton/BlueButton.jsx"
+import BilbyCheckBox from "../components/CheckBox/CheckBox.jsx"
 import SearchBar from "../components/SearchBar/SearchBar.jsx"
 import MainDocumentCard from "../components/MainDocumentCard/MainDocumentCard.jsx"
 
 import {
     ResultsColumnWrapper,
     ResultsUnderPanel,
+    AddSelectedButton,
 } from "./results-page-styles.js"
 
 import {
@@ -25,6 +26,8 @@ export default function Results( {
     setMatches }) {
     const [highlightedCardId, setHighlightedCardId] = useState("")
     const [datasetIds, setDatasetIds] = useState([])
+    const [allBoxChecked, setAllBoxChecked] = useState(false)
+    const [noneBoxChecked, setNoneBoxChecked] = useState(false)
 
     const onCardClick = (clickedCardId) => {
         if (clickedCardId === highlightedCardId) {
@@ -44,6 +47,25 @@ export default function Results( {
         }
     }
 
+    const onCardCheckboxChange = (clickedCardId, checked) => {
+        console.log("checkbox clicked: ")
+        console.log(clickedCardId)
+        setResultCardChecklist(resultCardCheckList.map(datum => { 
+            let entry
+
+            if (datum.id === clickedCardId) {
+                entry = {id: datum.id, checked: checked}
+            } else {
+                entry = {id: datum.id, checked: datum.checked}
+            }
+
+            return entry
+        }))
+
+        console.log("resultCardChecklist")
+        console.log(resultCardCheckList)
+    }
+
     const cardFromMatch = (match, index, inDataset) => {
         return (            
             <ResultCard
@@ -59,6 +81,8 @@ export default function Results( {
                 onCardClick={onCardClick}
                 onCardShift={onCardShift}
                 inDataset={inDataset}
+                checkedCards={undefined}
+                onCardCheckboxChange={onCardCheckboxChange}
             />
         )
     }
@@ -69,9 +93,18 @@ export default function Results( {
         )
     })
 
+    const [resultCardCheckList, setResultCardChecklist] = useState(matchCards.map((card) => {
+        return { id: card.props.id, checked: false }
+    }))
+
     const resultCards = matchCards.filter((card) => {
         return !datasetIds.includes(card.props.id)
     })
+    
+    // .map((card) => {
+    //     const newProps = {...card.props, checkedCards: resultCardCheckList}
+    //     return <ResultCard {...newProps}/>
+    // })
 
     const datasetCards = matchCards.filter((card) => { 
         return datasetIds.includes(card.props.id)
@@ -92,6 +125,23 @@ export default function Results( {
         return result
     }
 
+    const onAllBoxChecked = () => {
+        console.log("all box checked")
+        setAllBoxChecked(!allBoxChecked)
+
+        if (noneBoxChecked) {
+            setNoneBoxChecked(false)
+        }
+    }
+
+    const onNoneBoxChecked = () => {
+        setNoneBoxChecked(!noneBoxChecked)
+
+        if (allBoxChecked) {
+            setAllBoxChecked(false)
+        }
+    }
+
     return (
         <>
             <ResultsColumnWrapper
@@ -108,8 +158,21 @@ export default function Results( {
                     setMatches={setMatches}
                 />
                 <ResultsUnderPanel>
-                    <BlueButton text="sort by..."/>
-                    <BlueButton text="+ data"/>
+                <label htmlFor="allCheckbox">all</label>
+                <BilbyCheckBox 
+                    name="allCheckbox"
+                    onCheckBoxChange={onAllBoxChecked}
+                    checked={allBoxChecked}
+                />
+                <label htmlFor="noneCheckbox">none</label>
+                <BilbyCheckBox 
+                    name="noneCheckbox"
+                    onCheckBoxChange={onNoneBoxChecked}
+                    checked={noneBoxChecked}
+                />
+                <AddSelectedButton>
+                    Add Selected
+                </AddSelectedButton>
                 </ResultsUnderPanel>
                 {resultCards}
             </ResultsColumnWrapper>

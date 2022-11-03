@@ -4,9 +4,9 @@ import {
     ResultCardCheckBoxStyle,
 } from "./checkbox-styles.js"
 
-export default function ResultCardCheckBox() {
+export default function BilbyCheckBox({ onCheckBoxChange, checked }) {
 
     return (
-        <ResultCardCheckBoxStyle type="checkbox"/>
+        <ResultCardCheckBoxStyle onChange={onCheckBoxChange} checked={checked} type="checkbox"/>
     )
 }

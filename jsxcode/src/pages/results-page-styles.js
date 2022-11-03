@@ -29,3 +29,27 @@ export const ResultsUnderPanel = styled.div`
         padding: 0 0.7rem;
     }
 `
+
+export const AddSelectedButton = styled.button`
+    & {
+        display: flex;
+        width: 80px;
+        height: 25px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: hsla(217, 68%, 48%, 1);
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 0.7rem;
+    }
+
+    &:hover {
+        background-color: hsla(217, 68%, 63%, 1);
+    }
+
+    &:active {
+        background-color: hsla(217, 68%, 29%, 1);
+    }
+`
