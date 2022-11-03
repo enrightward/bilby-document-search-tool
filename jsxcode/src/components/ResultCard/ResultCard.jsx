@@ -14,6 +14,7 @@ import {
     ResultCardTitle,
     ResultCardBodyColumn,
     WebLink,
+    AddToDatasetButton,
 } from "./result-card-styles.js"
 
 import {
@@ -29,10 +30,13 @@ export default function ResultCard( {
     zhText, 
     url, 
     highlightedCardId,
-    onCardClick, }) {
+    onCardClick, 
+    onCardShift, 
+    inDataset, }) {
     const languageOptions = ["EN", "\u00BD", "中文"]
     const [language, setLanguage] = useState("\u00BD")
     const [flipState, setFlipState] = useState("front")
+    const [belongsToDataset, setBelongsToDataset] = useState(inDataset)
     
     const onTriToggleClick = (val) => {
         setLanguage(val)
@@ -45,6 +49,11 @@ export default function ResultCard( {
             setFlipState("front")
         }
         console.log("flip card")
+    }
+
+    const onCardAddClick = () => {
+        setBelongsToDataset(!belongsToDataset)
+        onCardShift(id)
     }
 
     const displayURL = url.substring(0, resultCardURLLength) + "..."
@@ -61,6 +70,12 @@ export default function ResultCard( {
                     onTriToggleClick={onTriToggleClick}
                     languageOptions={languageOptions}
                     selectedLanguage={language} />
+                    <AddToDatasetButton
+                        belongsToDataset={belongsToDataset}
+                        onMouseDown={() => onCardAddClick()}
+                    >
+                        {belongsToDataset ? "Remove" : "Add"}
+                    </AddToDatasetButton>
                 <ResultCardCheckBox/>
             </ResultCardHeader>
             <ResultCardFlipper

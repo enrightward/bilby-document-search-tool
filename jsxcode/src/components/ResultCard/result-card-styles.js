@@ -61,27 +61,14 @@ export const ResultCardOuter = styled.div`
         margin: ${resultCardSeparation} 0;
         min-height: ${minResultCardHeight};
         max-height: ${maxResultCardHeight};
-        // border: 1px solid ${resultCardBorderColor};
-        border: 1px solid ${(props) =>
-            computeHighlightBorderColor(props.highlighted)};
+        border: 1px solid
+            ${(props) => computeHighlightBorderColor(props.highlighted)};
         box-shadow: ${(props) => computeHighlightBoxShadow(props.highlighted)};
         border-radius: ${resultCardBorderRadius};
         background-color: none;
         perspective: 10000px;
     }
-
-    // &:focus {
-    //     border: 1px solid rgba(81, 203, 238, 1);
-    //     box-shadow: 0 0 5px rgba(81, 203, 238, 1);
-    // }
 `
-
-// input[type=text]:focus, textarea:focus {
-//     box-shadow: 0 0 5px rgba(81, 203, 238, 1);
-//     padding: 3px 0px 3px 3px;
-//     margin: 5px 1px 3px 0px;
-//     border: 1px solid rgba(81, 203, 238, 1);
-// }
 
 export const ResultCardHeader = styled.div`
     & {
@@ -104,6 +91,73 @@ export const WebLink = styled.a`
         font-size: ${webLinkFontSize};
         font-weight: ${webLinkFontWeight};
         text-decoration: underline;
+    }
+`
+
+const addButtonWidth = "50px"
+const addButtonHeight = "20px"
+
+const computeBackgroundColor = (belongsToDataset, state) => {
+    let backgroundColor
+
+    switch (true) {
+        case !belongsToDataset && state === "passive":
+            backgroundColor = "hsla(217, 68%, 48%, 1)"
+            break
+
+        case !belongsToDataset && state === "hover":
+            backgroundColor = "hsla(217, 68%, 63%, 1)"
+            break
+
+        case !belongsToDataset && state === "active":
+            backgroundColor = "hsla(217, 68%, 29%, 1)"
+            break
+
+        case belongsToDataset && state === "passive":
+            backgroundColor = "red"
+            break
+
+        case belongsToDataset && state === "hover":
+            backgroundColor = "pink"
+            break
+
+        case belongsToDataset && state === "active":
+            backgroundColor = "magenta"
+            break
+
+        default:
+            backgroundColor = "black"
+            break
+    }
+
+    return backgroundColor
+}
+
+export const AddToDatasetButton = styled.button`
+    & {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: ${addButtonWidth};
+        height: ${addButtonHeight};
+        color: white;
+        background-color: ${(props) =>
+            computeBackgroundColor(props.belongsToDataset, "passive")};
+        border: none;
+        border-radius: 5px;
+    }
+
+    &:hover {
+        //background-color: hsla(217, 68%, 63%, 1);
+        background-color: ${(props) =>
+            computeBackgroundColor(props.belongsToDataset, "hover")};
+    }
+
+    &:active {
+        //background-color: hsla(217, 68%, 29%, 1);
+        background-color: ${(props) =>
+            computeBackgroundColor(props.belongsToDataset, "active")};
     }
 `
 

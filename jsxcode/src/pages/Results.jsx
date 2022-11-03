@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import ResultCard from "../components/ResultCard/ResultCard.jsx"
 import BlueButton from "../components/BlueButton/BlueButton.jsx"
-import DatasetPanel from "../components/DatasetPanel/DatasetPanel.jsx"
 import SearchBar from "../components/SearchBar/SearchBar.jsx"
 import MainDocumentCard from "../components/MainDocumentCard/MainDocumentCard.jsx"
 
@@ -25,6 +24,7 @@ export default function Results( {
     matches, 
     setMatches }) {
     const [highlightedCardId, setHighlightedCardId] = useState("")
+    const [datasetIds, setDatasetIds] = useState([])
 
     const onCardClick = (clickedCardId) => {
         if (clickedCardId === highlightedCardId) {
@@ -35,8 +35,17 @@ export default function Results( {
         console.log("clicked card index: ", clickedCardId)
     }
 
-    const cards = matches.map( (match, index) => {
-        return (
+    const onCardShift = (clickedCardId) => {
+
+        if (datasetIds.includes(clickedCardId)) {
+            setDatasetIds(datasetIds => datasetIds.filter(id => id !== clickedCardId))
+        } else {
+            setDatasetIds(datasetIds => [...datasetIds, clickedCardId])
+        }
+    }
+
+    const cardFromMatch = (match, index, inDataset) => {
+        return (            
             <ResultCard
                 key={`resultCard_${index}`}
                 id={`resultCard_${index}`}
@@ -48,30 +57,31 @@ export default function Results( {
                 url={match["url"]}
                 highlightedCardId={highlightedCardId}
                 onCardClick={onCardClick}
+                onCardShift={onCardShift}
+                inDataset={inDataset}
             />
+        )
+    }
+
+    const matchCards = matches.map((match, index) => {
+        return (
+            cardFromMatch(match, index, false)
         )
     })
 
-    // const getEnText = () => {
-    //     const currentCard = cards.filter((card) => {
-    //         return card.props.id === highlightedCardId
-    //     })
-    //     console.log(currentCard)
-    //     const displayText = currentCard[0]?.props?.enText ?? "hello world bozo"
-    //     return displayText
-    // }
+    const resultCards = matchCards.filter((card) => {
+        return !datasetIds.includes(card.props.id)
+    })
 
-    // const getEnTitle = () => {
-    //     const currentCard = cards.filter((card) => {
-    //         return card.props.id === highlightedCardId
-    //     })
-    //     console.log(currentCard)
-    //     const displayText = currentCard[0]?.props?.enTitle ?? "hello world bozo"
-    //     return displayText
-    // }
+    const datasetCards = matchCards.filter((card) => { 
+        return datasetIds.includes(card.props.id)
+    }).map((card) => {
+        const newProps = {...card.props, inDataset: true}
+        return <ResultCard {...newProps}/>
+    })
 
     const getCurrentCardData = () => {
-        const currentCard = cards.filter((card) => {
+        const currentCard = resultCards.filter((card) => {
             return card.props.id === highlightedCardId
         })[0]
         const enTitle = currentCard?.props?.enTitle ?? "This card has no title"
@@ -101,7 +111,7 @@ export default function Results( {
                     <BlueButton text="sort by..."/>
                     <BlueButton text="+ data"/>
                 </ResultsUnderPanel>
-                {cards}
+                {resultCards}
             </ResultsColumnWrapper>
             <ResultsColumnWrapper
                 minWidth={minTriptychColumnWidth}
@@ -119,8 +129,8 @@ export default function Results( {
                 borderRadius={cardBorderRadius}
                 backgroundColor={triptychColumnBackgroundColour}
             >
-                statistics-col
-                <DatasetPanel text="dataset-panel"/>
+                Dataset column
+                {datasetCards}
             </ResultsColumnWrapper>
         </>
     )
