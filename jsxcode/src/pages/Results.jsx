@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import ResultCard from "../components/ResultCard/ResultCard.jsx"
 import BilbyCheckBox from "../components/CheckBox/CheckBox.jsx"
 import SearchBar from "../components/SearchBar/SearchBar.jsx"
@@ -19,6 +19,10 @@ import {
     triptychColumnBackgroundColour,
 } from "../components/styleSettings.js"
 
+const computeResultCardId = ( index ) => {
+    return `resultCard_${index}`
+}
+
 export default function Results( { 
     searchQuery, 
     setSearchQuery, 
@@ -28,6 +32,20 @@ export default function Results( {
     const [datasetIds, setDatasetIds] = useState([])
     const [allBoxChecked, setAllBoxChecked] = useState(false)
     const [noneBoxChecked, setNoneBoxChecked] = useState(false)
+
+    const updateCardCheckStates = (matches) => {
+        const result = matches.map((match, index) => {
+            return { id: computeResultCardId(index), checked: false }
+        })
+        return result
+    }
+
+    const [resultCardCheckList, setResultCardChecklist] = useState([])
+
+    useEffect(() => {
+        console.log("matches changed")
+        setResultCardChecklist(updateCardCheckStates(matches))
+    }, [matches])
 
     const onCardClick = (clickedCardId) => {
         if (clickedCardId === highlightedCardId) {
@@ -47,21 +65,22 @@ export default function Results( {
         }
     }
 
-    const onCardCheckboxChange = (clickedCardId, checked) => {
-        console.log("checkbox clicked: ")
+    const onCardCheckboxChange = (clickedCardId) => {
+        console.log("checkbox changed: ")
         console.log(clickedCardId)
-        setResultCardChecklist(resultCardCheckList.map(datum => { 
+        const newResultCardCheckList = resultCardCheckList.map((datum) => {
             let entry
 
             if (datum.id === clickedCardId) {
-                entry = {id: datum.id, checked: checked}
+                entry = {id: datum.id, checked: !datum.checked}
             } else {
                 entry = {id: datum.id, checked: datum.checked}
             }
 
             return entry
-        }))
-
+        })
+        console.log("newResultCardCheckList", newResultCardCheckList)
+        setResultCardChecklist(prevResultCardCheckList => newResultCardCheckList)
         console.log("resultCardChecklist")
         console.log(resultCardCheckList)
     }
@@ -69,8 +88,8 @@ export default function Results( {
     const cardFromMatch = (match, index, inDataset) => {
         return (            
             <ResultCard
-                key={`resultCard_${index}`}
-                id={`resultCard_${index}`}
+                key={computeResultCardId(index)}
+                id={computeResultCardId(index)}
                 index={index}
                 enTitle={match["en_title"]}
                 zhTitle={match["title"]}
@@ -81,7 +100,6 @@ export default function Results( {
                 onCardClick={onCardClick}
                 onCardShift={onCardShift}
                 inDataset={inDataset}
-                checkedCards={undefined}
                 onCardCheckboxChange={onCardCheckboxChange}
             />
         )
@@ -93,19 +111,10 @@ export default function Results( {
         )
     })
 
-    const [resultCardCheckList, setResultCardChecklist] = useState(matchCards.map((card) => {
-        return { id: card.props.id, checked: false }
-    }))
-
     const resultCards = matchCards.filter((card) => {
         return !datasetIds.includes(card.props.id)
     })
     
-    // .map((card) => {
-    //     const newProps = {...card.props, checkedCards: resultCardCheckList}
-    //     return <ResultCard {...newProps}/>
-    // })
-
     const datasetCards = matchCards.filter((card) => { 
         return datasetIds.includes(card.props.id)
     }).map((card) => {
@@ -125,7 +134,17 @@ export default function Results( {
         return result
     }
 
-    const onAllBoxChecked = () => {
+    const onAddSelectedClick = () => {
+        console.log("onAddSelectedClick")
+        const checkedCardIds = resultCardCheckList.filter((datum) => {
+            return datum.checked
+        }).map((datum) => {
+            return datum.id
+        })
+        setDatasetIds(datasetIds => [...datasetIds, ...checkedCardIds])
+    }
+
+    const onAllBoxChange = () => {
         console.log("all box checked")
         setAllBoxChecked(!allBoxChecked)
 
@@ -134,7 +153,7 @@ export default function Results( {
         }
     }
 
-    const onNoneBoxChecked = () => {
+    const onNoneBoxChange = () => {
         setNoneBoxChecked(!noneBoxChecked)
 
         if (allBoxChecked) {
@@ -161,16 +180,17 @@ export default function Results( {
                 <label htmlFor="allCheckbox">all</label>
                 <BilbyCheckBox 
                     name="allCheckbox"
-                    onCheckBoxChange={onAllBoxChecked}
+                    onCheckBoxChange={onAllBoxChange}
                     checked={allBoxChecked}
                 />
                 <label htmlFor="noneCheckbox">none</label>
                 <BilbyCheckBox 
                     name="noneCheckbox"
-                    onCheckBoxChange={onNoneBoxChecked}
+                    onCheckBoxChange={onNoneBoxChange}
                     checked={noneBoxChecked}
                 />
-                <AddSelectedButton>
+                <AddSelectedButton
+                    onClick={onAddSelectedClick}>
                     Add Selected
                 </AddSelectedButton>
                 </ResultsUnderPanel>

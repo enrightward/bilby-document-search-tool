@@ -33,13 +33,18 @@ export default function ResultCard( {
     onCardClick, 
     onCardShift, 
     inDataset, 
-    checkedCards, 
     onCardCheckboxChange, }) {
     const languageOptions = ["EN", "\u00BD", "中文"]
     const [language, setLanguage] = useState("\u00BD")
     const [flipState, setFlipState] = useState("front")
     const [belongsToDataset, setBelongsToDataset] = useState(inDataset)
-    const [checked, setChecked] = useState(false)
+    
+    // const [checked, setChecked] = useState(false)
+
+    // useEffect(() => {
+    //     setChecked(!checked)
+    //     console.log(`checked(after): ${checked}`)
+    // }, [checked])
     
     const onTriToggleClick = (val) => {
         setLanguage(val)
@@ -81,10 +86,8 @@ export default function ResultCard( {
                     </AddToDatasetButton>
                 <BilbyCheckBox
                     onCheckBoxChange={() => {
-                        setChecked(!checked)
-                        onCardCheckboxChange(id, checked)
+                        onCardCheckboxChange(id)
                     }}
-                    // checked={checkedCards[id]}
                 />
             </ResultCardHeader>
             <ResultCardFlipper
