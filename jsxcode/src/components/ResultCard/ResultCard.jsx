@@ -33,18 +33,12 @@ export default function ResultCard( {
     onCardClick, 
     onCardShift, 
     inDataset, 
-    onCardCheckboxChange, }) {
+    onCardCheckboxChange, 
+    resultCardCheckList, }) {
     const languageOptions = ["EN", "\u00BD", "中文"]
     const [language, setLanguage] = useState("\u00BD")
     const [flipState, setFlipState] = useState("front")
     const [belongsToDataset, setBelongsToDataset] = useState(inDataset)
-    
-    // const [checked, setChecked] = useState(false)
-
-    // useEffect(() => {
-    //     setChecked(!checked)
-    //     console.log(`checked(after): ${checked}`)
-    // }, [checked])
     
     const onTriToggleClick = (val) => {
         setLanguage(val)
@@ -56,12 +50,21 @@ export default function ResultCard( {
         } else if (flipState === "back") {
             setFlipState("front")
         }
-        console.log("flip card")
     }
 
-    const onCardAddClick = () => {
+    const onCardMoveClick = () => {
+        console.log("onCardMoveClick: ID = ", id)
+        console.log("belongsToDataset(before) = ", belongsToDataset)
+        console.log("belongsToDataset(after) = ", !belongsToDataset)
         setBelongsToDataset(!belongsToDataset)
         onCardShift(id)
+    }
+
+    const amIChecked = (id) => {
+        const result = resultCardCheckList?.filter((datum) => {
+            return datum.id === id
+        })[0]?.checked ?? false
+        return result
     }
 
     const displayURL = url.substring(0, resultCardURLLength) + "..."
@@ -80,7 +83,7 @@ export default function ResultCard( {
                     selectedLanguage={language} />
                     <AddToDatasetButton
                         belongsToDataset={belongsToDataset}
-                        onMouseDown={() => onCardAddClick()}
+                        onMouseDown={() => onCardMoveClick()}
                     >
                         {belongsToDataset ? "Remove" : "Add"}
                     </AddToDatasetButton>
@@ -88,6 +91,7 @@ export default function ResultCard( {
                     onCheckBoxChange={() => {
                         onCardCheckboxChange(id)
                     }}
+                    checked={amIChecked(id)}
                 />
             </ResultCardHeader>
             <ResultCardFlipper

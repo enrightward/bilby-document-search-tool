@@ -32,28 +32,28 @@ export default function Results( {
     const [datasetIds, setDatasetIds] = useState([])
     const [allBoxChecked, setAllBoxChecked] = useState(false)
     const [noneBoxChecked, setNoneBoxChecked] = useState(false)
+    const [resultCardCheckList, setResultCardChecklist] = useState([])
 
-    const updateCardCheckStates = (matches) => {
+    const updateCardCheckStates = (matches, isChecked) => {
+
         const result = matches.map((match, index) => {
-            return { id: computeResultCardId(index), checked: false }
+            return { id: computeResultCardId(index), checked: isChecked }
         })
+
         return result
     }
 
-    const [resultCardCheckList, setResultCardChecklist] = useState([])
-
     useEffect(() => {
-        console.log("matches changed")
-        setResultCardChecklist(updateCardCheckStates(matches))
-    }, [matches])
+        setResultCardChecklist(updateCardCheckStates(matches, allBoxChecked))
+    }, [matches, allBoxChecked])
 
     const onCardClick = (clickedCardId) => {
+
         if (clickedCardId === highlightedCardId) {
             setHighlightedCardId("")
         } else {
             setHighlightedCardId(clickedCardId)
         }
-        console.log("clicked card index: ", clickedCardId)
     }
 
     const onCardShift = (clickedCardId) => {
@@ -66,8 +66,6 @@ export default function Results( {
     }
 
     const onCardCheckboxChange = (clickedCardId) => {
-        console.log("checkbox changed: ")
-        console.log(clickedCardId)
         const newResultCardCheckList = resultCardCheckList.map((datum) => {
             let entry
 
@@ -79,10 +77,7 @@ export default function Results( {
 
             return entry
         })
-        console.log("newResultCardCheckList", newResultCardCheckList)
         setResultCardChecklist(prevResultCardCheckList => newResultCardCheckList)
-        console.log("resultCardChecklist")
-        console.log(resultCardCheckList)
     }
 
     const cardFromMatch = (match, index, inDataset) => {
@@ -101,6 +96,7 @@ export default function Results( {
                 onCardShift={onCardShift}
                 inDataset={inDataset}
                 onCardCheckboxChange={onCardCheckboxChange}
+                resultCardCheckList={resultCardCheckList}
             />
         )
     }
@@ -135,7 +131,6 @@ export default function Results( {
     }
 
     const onAddSelectedClick = () => {
-        console.log("onAddSelectedClick")
         const checkedCardIds = resultCardCheckList.filter((datum) => {
             return datum.checked
         }).map((datum) => {
@@ -145,7 +140,6 @@ export default function Results( {
     }
 
     const onAllBoxChange = () => {
-        console.log("all box checked")
         setAllBoxChecked(!allBoxChecked)
 
         if (noneBoxChecked) {
