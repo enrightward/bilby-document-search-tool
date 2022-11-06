@@ -8,6 +8,7 @@ import {
     ResultsColumnWrapper,
     ResultsUnderPanel,
     AddSelectedButton,
+    RemoveSelectedButton,
 } from "./results-page-styles.js"
 
 import {
@@ -29,25 +30,37 @@ export default function Results( {
     matches, 
     setMatches }) {
     const [highlightedCardId, setHighlightedCardId] = useState("")
-    const [datasetIds, setDatasetIds] = useState([])
-    const [allBoxChecked, setAllBoxChecked] = useState(false)
-    const [noneBoxChecked, setNoneBoxChecked] = useState(false)
+    const [allResultsBoxChecked, setAllResultsBoxChecked] = useState(false)
+    const [noneResultsBoxChecked, setNoneResultsBoxChecked] = useState(false)
+    const [allDatasetBoxChecked, setAllDatasetBoxChecked] = useState(false)
+    const [noneDatasetBoxChecked, setNoneDatasetBoxChecked] = useState(false)
     const [resultCardCheckList, setResultCardChecklist] = useState([])
+    const [datasetCardCheckList, setDatasetCardChecklist] = useState([])
+    const [datasetIds, setDatasetIds] = useState([])
 
-    const updateCardCheckStates = (matches, isChecked) => {
+    const updateAllNoneCardCheckStates = (matches, allChecked) => {
 
         const result = matches.map((match, index) => {
-            return { id: computeResultCardId(index), checked: isChecked }
+            return { id: computeResultCardId(index), checked: allChecked }
         })
 
         return result
     }
 
-    useEffect(() => {
-        setResultCardChecklist(updateCardCheckStates(matches, allBoxChecked))
-    }, [matches, allBoxChecked])
+    // useEffect(() => {
+    //     setResultCardChecklist(updateAllNoneCardCheckStates(allResultsBoxChecked, noneResultsBoxChecked))
+    // }, [matches, allResultsBoxChecked, noneResultsBoxChecked])
 
-    const onCardClick = (clickedCardId) => {
+    // useEffect(() => {
+    //     setDatasetCardChecklist(updateAllNoneCardCheckStates(allDatasetBoxChecked, noneDatasetBoxChecked))
+    // }, [matches, allDatasetBoxChecked, noneDatasetBoxChecked])
+
+    useEffect(() => {
+        setResultCardChecklist(updateAllNoneCardCheckStates(matches, allResultsBoxChecked))
+        setDatasetCardChecklist(updateAllNoneCardCheckStates(matches, allDatasetBoxChecked))
+    }, [matches, allResultsBoxChecked, noneResultsBoxChecked, allDatasetBoxChecked, noneDatasetBoxChecked])
+
+    const onCardFaceClick = (clickedCardId) => {
 
         if (clickedCardId === highlightedCardId) {
             setHighlightedCardId("")
@@ -56,17 +69,12 @@ export default function Results( {
         }
     }
 
-    const onCardShift = (clickedCardId) => {
-
-        if (datasetIds.includes(clickedCardId)) {
-            setDatasetIds(datasetIds => datasetIds.filter(id => id !== clickedCardId))
-        } else {
-            setDatasetIds(datasetIds => [...datasetIds, clickedCardId])
-        }
-    }
-
     const onCardCheckboxChange = (clickedCardId) => {
-        const newResultCardCheckList = resultCardCheckList.map((datum) => {
+        const isDatasetCard = datasetIds.includes(clickedCardId)
+        const cardCheckList = isDatasetCard ? datasetCardCheckList : resultCardCheckList
+        const setCardCheckList = isDatasetCard ? setDatasetCardChecklist : setResultCardChecklist
+
+        const newCardCheckList = cardCheckList.map((datum) => {
             let entry
 
             if (datum.id === clickedCardId) {
@@ -77,10 +85,10 @@ export default function Results( {
 
             return entry
         })
-        setResultCardChecklist(prevResultCardCheckList => newResultCardCheckList)
+        setCardCheckList(prevCardCheckList => newCardCheckList)
     }
 
-    const cardFromMatch = (match, index, inDataset) => {
+    function cardFromMatch(match, index) {
         return (            
             <ResultCard
                 key={computeResultCardId(index)}
@@ -92,11 +100,12 @@ export default function Results( {
                 zhText={match["text"]}
                 url={match["url"]}
                 highlightedCardId={highlightedCardId}
-                onCardClick={onCardClick}
-                onCardShift={onCardShift}
-                inDataset={inDataset}
+                onCardClick={onCardFaceClick}
+                onCardShift={onCardAddRemove}
+                datasetIds={datasetIds}
                 onCardCheckboxChange={onCardCheckboxChange}
                 resultCardCheckList={resultCardCheckList}
+                datasetCardCheckList={datasetCardCheckList}
             />
         )
     }
@@ -114,7 +123,7 @@ export default function Results( {
     const datasetCards = matchCards.filter((card) => { 
         return datasetIds.includes(card.props.id)
     }).map((card) => {
-        const newProps = {...card.props, inDataset: true}
+        const newProps = {...card.props}
         return <ResultCard {...newProps}/>
     })
 
@@ -130,28 +139,81 @@ export default function Results( {
         return result
     }
 
+    const resetAllNone = () => {
+        setAllResultsBoxChecked(false)
+        setNoneResultsBoxChecked(false)
+        setAllDatasetBoxChecked(false)
+        setNoneDatasetBoxChecked(false)
+    }
+
+    function onCardAddRemove(clickedCardId) {
+
+        if (datasetIds.includes(clickedCardId)) {
+            setDatasetIds(datasetIds => datasetIds.filter(id => id !== clickedCardId))
+            setDatasetCardChecklist(datasetCardCheckList => datasetCardCheckList.filter(datum => datum.id !== clickedCardId))
+        } else {
+            setDatasetIds(datasetIds => [...datasetIds, clickedCardId])
+            setResultCardChecklist(resultCardCheckList => resultCardCheckList.filter(datum => datum.id !== clickedCardId))
+        }
+    }
+
     const onAddSelectedClick = () => {
-        const checkedCardIds = resultCardCheckList.filter((datum) => {
+        const checkedResultCardIds = resultCardCheckList.filter((datum) => {
             return datum.checked
         }).map((datum) => {
             return datum.id
         })
-        setDatasetIds(datasetIds => [...datasetIds, ...checkedCardIds])
+        // uncheck all the result cards
+        setResultCardChecklist(updateAllNoneCardCheckStates(matches, false))
+        // append the ids of the newly added cards to the datasetIds
+        setDatasetIds(datasetIds => [...datasetIds, ...checkedResultCardIds])
+        // reset all the all/none checkboxes
+        resetAllNone()
     }
 
-    const onAllBoxChange = () => {
-        setAllBoxChecked(!allBoxChecked)
+    const onRemoveSelectedClick = () => {
+        const checkedDatasetCardIds = datasetCardCheckList.filter((datum) => {
+            return datum.checked
+        }).map((datum) => {
+            return datum.id
+        })
+        // uncheck all the dataset cards
+        setDatasetCardChecklist(updateAllNoneCardCheckStates(matches, false))        
+        // delete the ids of the newly removed cards from the datasetIds
+        setDatasetIds(datasetIds => datasetIds.filter(id => !checkedDatasetCardIds.includes(id)))
+        // reset all the all/none checkboxes
+        resetAllNone()
+    }
 
-        if (noneBoxChecked) {
-            setNoneBoxChecked(false)
+    const onAllResultsBoxChange = () => {
+        setAllResultsBoxChecked(!allResultsBoxChecked)
+
+        if (noneResultsBoxChecked) {
+            setNoneResultsBoxChecked(false)
         }
     }
 
-    const onNoneBoxChange = () => {
-        setNoneBoxChecked(!noneBoxChecked)
+    const onAllDatasetBoxChange = () => {
+        setAllDatasetBoxChecked(!allDatasetBoxChecked)
 
-        if (allBoxChecked) {
-            setAllBoxChecked(false)
+        if (noneDatasetBoxChecked) {
+            setNoneDatasetBoxChecked(false)
+        }
+    }
+
+    const onNoneResultsBoxChange = () => {
+        setNoneResultsBoxChecked(!noneResultsBoxChecked)
+
+        if (allResultsBoxChecked) {
+            setAllResultsBoxChecked(false)
+        }
+    }
+
+    const onNoneDatasetBoxChange = () => {
+        setNoneDatasetBoxChecked(!noneDatasetBoxChecked)
+
+        if (allDatasetBoxChecked) {
+            setAllDatasetBoxChecked(false)
         }
     }
 
@@ -171,17 +233,17 @@ export default function Results( {
                     setMatches={setMatches}
                 />
                 <ResultsUnderPanel>
-                <label htmlFor="allCheckbox">all</label>
+                <label htmlFor="allResultsCheckbox">all</label>
                 <BilbyCheckBox 
-                    name="allCheckbox"
-                    onCheckBoxChange={onAllBoxChange}
-                    checked={allBoxChecked}
+                    name="allResultsCheckbox"
+                    onCheckBoxChange={onAllResultsBoxChange}
+                    checked={allResultsBoxChecked}
                 />
-                <label htmlFor="noneCheckbox">none</label>
+                <label htmlFor="noneResultsCheckbox">none</label>
                 <BilbyCheckBox 
-                    name="noneCheckbox"
-                    onCheckBoxChange={onNoneBoxChange}
-                    checked={noneBoxChecked}
+                    name="noneResultsCheckbox"
+                    onCheckBoxChange={onNoneResultsBoxChange}
+                    checked={noneResultsBoxChecked}
                 />
                 <AddSelectedButton
                     onClick={onAddSelectedClick}>
@@ -207,6 +269,24 @@ export default function Results( {
                 backgroundColor={triptychColumnBackgroundColour}
             >
                 Dataset column
+                <ResultsUnderPanel>
+                <label htmlFor="allDatasetCheckbox">all</label>
+                <BilbyCheckBox 
+                    name="allDatasetCheckbox"
+                    onCheckBoxChange={onAllDatasetBoxChange}
+                    checked={allDatasetBoxChecked}
+                />
+                <label htmlFor="noneDatasetCheckbox">none</label>
+                <BilbyCheckBox 
+                    name="noneDatasetCheckbox"
+                    onCheckBoxChange={onNoneDatasetBoxChange}
+                    checked={noneDatasetBoxChecked}
+                />
+                <RemoveSelectedButton
+                    onClick={onRemoveSelectedClick}>
+                    Remove Selected
+                </RemoveSelectedButton>
+                </ResultsUnderPanel>
                 {datasetCards}
             </ResultsColumnWrapper>
         </>

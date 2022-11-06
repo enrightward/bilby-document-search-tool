@@ -32,13 +32,17 @@ export default function ResultCard( {
     highlightedCardId,
     onCardClick, 
     onCardShift, 
-    inDataset, 
+    datasetIds,
     onCardCheckboxChange, 
-    resultCardCheckList, }) {
+    resultCardCheckList, 
+    datasetCardCheckList, }) {
     const languageOptions = ["EN", "\u00BD", "中文"]
     const [language, setLanguage] = useState("\u00BD")
     const [flipState, setFlipState] = useState("front")
-    const [belongsToDataset, setBelongsToDataset] = useState(inDataset)
+
+    const belongsToDataset = () => {
+        return datasetIds.includes(id)
+    }
     
     const onTriToggleClick = (val) => {
         setLanguage(val)
@@ -54,16 +58,29 @@ export default function ResultCard( {
 
     const onCardMoveClick = () => {
         console.log("onCardMoveClick: ID = ", id)
-        console.log("belongsToDataset(before) = ", belongsToDataset)
-        console.log("belongsToDataset(after) = ", !belongsToDataset)
-        setBelongsToDataset(!belongsToDataset)
+        const inDataset = belongsToDataset()
+        console.log("belongsToDataset(before) = ", inDataset)
+        console.log("belongsToDataset(after) = ", !inDataset)
         onCardShift(id)
     }
 
+    // const amIChecked = (id) => {
+    //     const isInResultsCheckList = resultCardCheckList?.filter((datum) => {
+    //         return datum.id === id
+    //     })[0]?.checked ?? false
+    //     const result = isInResultsCheckList && !belongsToDataset()
+    //     return result
+    // }
+
     const amIChecked = (id) => {
-        const result = resultCardCheckList?.filter((datum) => {
+        const isInResultsCheckList = resultCardCheckList?.filter((datum) => {
             return datum.id === id
         })[0]?.checked ?? false
+
+        const isInDatasetCheckList = datasetCardCheckList?.filter((datum) => {
+            return datum.id === id
+        })[0]?.checked ?? false
+        const result = isInResultsCheckList || isInDatasetCheckList
         return result
     }
 
@@ -82,10 +99,10 @@ export default function ResultCard( {
                     languageOptions={languageOptions}
                     selectedLanguage={language} />
                     <AddToDatasetButton
-                        belongsToDataset={belongsToDataset}
+                        belongsToDataset={belongsToDataset()}
                         onMouseDown={() => onCardMoveClick()}
                     >
-                        {belongsToDataset ? "Remove" : "Add"}
+                        {belongsToDataset() ? "Remove" : "Add"}
                     </AddToDatasetButton>
                 <BilbyCheckBox
                     onCheckBoxChange={() => {

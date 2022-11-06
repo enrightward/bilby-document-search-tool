@@ -53,3 +53,27 @@ export const AddSelectedButton = styled.button`
         background-color: hsla(217, 68%, 29%, 1);
     }
 `
+
+export const RemoveSelectedButton = styled.button`
+    & {
+        display: flex;
+        width: 80px;
+        height: 25px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: hsla(360, 68%, 41%, 1);
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 0.7rem;
+    }
+
+    &:hover {
+        background-color: hsla(360, 68%, 56%, 1);
+    }
+
+    &:active {
+        background-color: hsla(360, 68%, 25%, 1);
+    }
+`

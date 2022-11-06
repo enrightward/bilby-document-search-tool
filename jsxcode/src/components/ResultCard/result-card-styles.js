@@ -114,15 +114,15 @@ const computeBackgroundColor = (belongsToDataset, state) => {
             break
 
         case belongsToDataset && state === "passive":
-            backgroundColor = "red"
+            backgroundColor = "hsla(360, 68%, 41%, 1)"
             break
 
         case belongsToDataset && state === "hover":
-            backgroundColor = "pink"
+            backgroundColor = "hsla(360, 68%, 56%, 1)"
             break
 
         case belongsToDataset && state === "active":
-            backgroundColor = "magenta"
+            backgroundColor = "hsla(360, 68%, 25%, 1)"
             break
 
         default:
