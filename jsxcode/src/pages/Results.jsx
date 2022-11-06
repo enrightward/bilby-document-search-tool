@@ -149,11 +149,11 @@ export default function Results( {
     function onCardAddRemove(clickedCardId) {
 
         if (datasetIds.includes(clickedCardId)) {
-            setDatasetIds(datasetIds => datasetIds.filter(id => id !== clickedCardId))
             setDatasetCardChecklist(datasetCardCheckList => datasetCardCheckList.filter(datum => datum.id !== clickedCardId))
+            setDatasetIds(datasetIds => datasetIds.filter(id => id !== clickedCardId))
         } else {
-            setDatasetIds(datasetIds => [...datasetIds, clickedCardId])
             setResultCardChecklist(resultCardCheckList => resultCardCheckList.filter(datum => datum.id !== clickedCardId))
+            setDatasetIds(datasetIds => [...datasetIds, clickedCardId])
         }
     }
 
