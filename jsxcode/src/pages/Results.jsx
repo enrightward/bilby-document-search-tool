@@ -3,6 +3,7 @@ import ResultCard from "../components/ResultCard/ResultCard.jsx"
 import BilbyCheckBox from "../components/CheckBox/CheckBox.jsx"
 import SearchBar from "../components/SearchBar/SearchBar.jsx"
 import MainDocumentCard from "../components/MainDocumentCard/MainDocumentCard.jsx"
+import MainDocumentModal from "../components/MainDocumentModal/MainDocumentModal.jsx"
 
 import {
     ResultsColumnWrapper,
@@ -30,6 +31,7 @@ export default function Results( {
     matches, 
     setMatches }) {
     const [highlightedCardId, setHighlightedCardId] = useState("")
+    const [showDocumentModal, setShowDocumentModal] = useState(false)
     const [allResultsBoxChecked, setAllResultsBoxChecked] = useState(false)
     const [noneResultsBoxChecked, setNoneResultsBoxChecked] = useState(false)
     const [allDatasetBoxChecked, setAllDatasetBoxChecked] = useState(false)
@@ -47,14 +49,6 @@ export default function Results( {
         return result
     }
 
-    // useEffect(() => {
-    //     setResultCardChecklist(updateAllNoneCardCheckStates(allResultsBoxChecked, noneResultsBoxChecked))
-    // }, [matches, allResultsBoxChecked, noneResultsBoxChecked])
-
-    // useEffect(() => {
-    //     setDatasetCardChecklist(updateAllNoneCardCheckStates(allDatasetBoxChecked, noneDatasetBoxChecked))
-    // }, [matches, allDatasetBoxChecked, noneDatasetBoxChecked])
-
     useEffect(() => {
         setResultCardChecklist(updateAllNoneCardCheckStates(matches, allResultsBoxChecked))
         setDatasetCardChecklist(updateAllNoneCardCheckStates(matches, allDatasetBoxChecked))
@@ -64,8 +58,10 @@ export default function Results( {
 
         if (clickedCardId === highlightedCardId) {
             setHighlightedCardId("")
+            setShowDocumentModal(false)
         } else {
             setHighlightedCardId(clickedCardId)
+            setShowDocumentModal(true)
         }
     }
 
@@ -257,10 +253,7 @@ export default function Results( {
                 borderColor={lightBorderColor}
                 borderRadius={cardBorderRadius}
                 backgroundColor={triptychColumnBackgroundColour}
-            >
-                doc-reader-col
-                <MainDocumentCard props={getCurrentCardData()} />
-                
+            >                
             </ResultsColumnWrapper>
             <ResultsColumnWrapper
                 minWidth={minTriptychColumnWidth}
@@ -289,6 +282,8 @@ export default function Results( {
                 </ResultsUnderPanel>
                 {datasetCards}
             </ResultsColumnWrapper>
+            
+            <MainDocumentModal {...getCurrentCardData()} show={showDocumentModal} setShow={setShowDocumentModal} />
         </>
     )
 }

@@ -64,14 +64,6 @@ export default function ResultCard( {
         onCardShift(id)
     }
 
-    // const amIChecked = (id) => {
-    //     const isInResultsCheckList = resultCardCheckList?.filter((datum) => {
-    //         return datum.id === id
-    //     })[0]?.checked ?? false
-    //     const result = isInResultsCheckList && !belongsToDataset()
-    //     return result
-    // }
-
     const amIChecked = (id) => {
         const isInResultsCheckList = resultCardCheckList?.filter((datum) => {
             return datum.id === id
