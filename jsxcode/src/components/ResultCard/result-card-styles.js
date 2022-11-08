@@ -159,6 +159,32 @@ export const AddToDatasetButton = styled.button`
     }
 `
 
+export const ExpandButton = styled.button`
+    & {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: ${addButtonWidth};
+        height: ${addButtonHeight};
+        color: white;
+        background-color: ${(props) =>
+            computeBackgroundColor(props.belongsToDataset, "passive")};
+        border: none;
+        border-radius: 5px;
+    }
+
+    &:hover {
+        background-color: ${(props) =>
+            computeBackgroundColor(props.belongsToDataset, "hover")};
+    }
+
+    &:active {
+        background-color: ${(props) =>
+            computeBackgroundColor(props.belongsToDataset, "active")};
+    }
+`
+
 export const ResultCardFlipper = styled.div`
     & {
         flex: 1;

@@ -58,10 +58,8 @@ export default function Results( {
 
         if (clickedCardId === highlightedCardId) {
             setHighlightedCardId("")
-            setShowDocumentModal(false)
         } else {
             setHighlightedCardId(clickedCardId)
-            setShowDocumentModal(true)
         }
     }
 
@@ -96,7 +94,7 @@ export default function Results( {
                 zhText={match["text"]}
                 url={match["url"]}
                 highlightedCardId={highlightedCardId}
-                onCardClick={onCardFaceClick}
+                onCardFaceClick={onCardFaceClick}
                 onCardShift={onCardAddRemove}
                 datasetIds={datasetIds}
                 onCardCheckboxChange={onCardCheckboxChange}
@@ -254,6 +252,7 @@ export default function Results( {
                 borderRadius={cardBorderRadius}
                 backgroundColor={triptychColumnBackgroundColour}
             >                
+            <MainDocumentCard {...getCurrentCardData()} setShowDocumentModal={setShowDocumentModal}/>
             </ResultsColumnWrapper>
             <ResultsColumnWrapper
                 minWidth={minTriptychColumnWidth}

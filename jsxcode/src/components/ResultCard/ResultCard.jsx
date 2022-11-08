@@ -30,12 +30,13 @@ export default function ResultCard( {
     zhText, 
     url, 
     highlightedCardId,
-    onCardClick, 
+    onCardFaceClick,
     onCardShift, 
     datasetIds,
     onCardCheckboxChange, 
     resultCardCheckList, 
-    datasetCardCheckList, }) {
+    datasetCardCheckList,
+}) {
     const languageOptions = ["EN", "\u00BD", "中文"]
     const [language, setLanguage] = useState("\u00BD")
     const [flipState, setFlipState] = useState("front")
@@ -104,7 +105,7 @@ export default function ResultCard( {
                 />
             </ResultCardHeader>
             <ResultCardFlipper
-                onMouseDown={() => onCardClick(id)}
+                onMouseDown={() => onCardFaceClick(id)}
                 className="card-flipper">
                 <ResultCardFlipperInner
                     flipState={flipState}
