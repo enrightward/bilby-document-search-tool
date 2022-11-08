@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react"
 import ResultCard from "../components/ResultCard/ResultCard.jsx"
 import BilbyCheckBox from "../components/CheckBox/CheckBox.jsx"
 import SearchBar from "../components/SearchBar/SearchBar.jsx"
-import MainDocumentCard from "../components/MainDocumentCard/MainDocumentCard.jsx"
-import MainDocumentModal from "../components/MainDocumentModal/MainDocumentModal.jsx"
+import MainDocumentCentreCard from "../components/MainDocumentCard/MainDocumentCentreCard.jsx"
+import MainDocumentModal from "../components/MainDocumentCard/MainDocumentModal.jsx"
 
 import {
     ResultsColumnWrapper,
@@ -61,6 +61,7 @@ export default function Results( {
         } else {
             setHighlightedCardId(clickedCardId)
         }
+        console.log("clickedCardId", clickedCardId)
     }
 
     const onCardCheckboxChange = (clickedCardId) => {
@@ -252,7 +253,8 @@ export default function Results( {
                 borderRadius={cardBorderRadius}
                 backgroundColor={triptychColumnBackgroundColour}
             >                
-            <MainDocumentCard {...getCurrentCardData()} setShowDocumentModal={setShowDocumentModal}/>
+            {/* <MainDocumentCard {...getCurrentCardData()} setShowDocumentModal={setShowDocumentModal}/> */}
+            <MainDocumentCentreCard {...getCurrentCardData()} setShowDocumentModal={setShowDocumentModal}/>
             </ResultsColumnWrapper>
             <ResultsColumnWrapper
                 minWidth={minTriptychColumnWidth}
@@ -282,7 +284,7 @@ export default function Results( {
                 {datasetCards}
             </ResultsColumnWrapper>
             
-            <MainDocumentModal {...getCurrentCardData()} show={showDocumentModal} setShow={setShowDocumentModal} />
+            <MainDocumentModal {...getCurrentCardData()} show={showDocumentModal} setShowDocumentModal={setShowDocumentModal} />
         </>
     )
 }

@@ -1,29 +1,30 @@
 import {
     MainDocumentCardDiv,
-    MainDocumentCardHeader,
     MainDocumentCardBody,
     MainDocumentCardColumn,
     MainDocumentCardTitle,
-    MainDocumentCardExpandButton,
     MainDocumentCardCentre,
 } from "./main-document-card-styles.js"
 
-export default function MainDocumentCard( { enTitle, enText, zhTitle, zhText, setShowDocumentModal } ) {
-
-    const handleExpand = () => {
-        console.log("expand")
-        setShowDocumentModal(true)
-    }
+export default function MainDocumentCard( 
+        { 
+            enTitle, 
+            enText, 
+            zhTitle, 
+            zhText, 
+            width, 
+            height, 
+            columnGap, 
+            bodyPadding, 
+            header: Header 
+        } 
+    ) {
 
     return (
-        <MainDocumentCardDiv>
-            <MainDocumentCardHeader>
-                <MainDocumentCardExpandButton onClick={handleExpand}>
-                    expand
-                </MainDocumentCardExpandButton>
-            </MainDocumentCardHeader>
-            <MainDocumentCardBody>
-                <MainDocumentCardCentre>
+        <MainDocumentCardDiv height={height} width={width} >
+            <Header/>
+            <MainDocumentCardBody bodyPadding={bodyPadding}>
+                <MainDocumentCardCentre columnGap={columnGap}>
                     <MainDocumentCardColumn>
                     <MainDocumentCardTitle>
                         {enTitle}

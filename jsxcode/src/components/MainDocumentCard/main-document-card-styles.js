@@ -11,28 +11,11 @@ export const MainDocumentCardDiv = styled.div`
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        height: 95%;
-        width: 95%;
-        // max-width: min(80%, 900px);
-        // height: 80%;
-        // background-color: ${darkColour};
+        height: ${(props) => props.height};
+        width: ${(props) => props.width};
         padding: 0;
         border-radius: ${borderRadius};
         border: 1px solid ${lightColour};
-    }
-`
-
-export const MainDocumentCardHeader = styled.div`
-    & {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: space-between;
-        width: 100%;
-        background-color: ${darkColour};
-        border-bottom: 1px solid ${lightColour};
-        padding: 1.15rem;
-        margin: 0rem;
     }
 `
 
@@ -43,10 +26,9 @@ export const MainDocumentCardBody = styled.div`
         justify-content: space-around;
         align-items: flex-start;
         background-color: ${darkColour};
-        // background-color: green;
         width: 100%;
         height: 100%;
-        padding: 0.5rem 1.5rem 1.5rem 1.5rem;
+        padding: ${(props) => props.bodyPadding};
         overflow-y: scroll;
         gap: 1.5rem;
     }
@@ -59,8 +41,7 @@ export const MainDocumentCardCentre = styled.div`
         flex-direction: row;
         justify-content: space-around;
         align-items: flex-start;
-        // background-color: magenta;
-        gap: 1.5rem;
+        gap: ${(props) => props.columnGap};
         width: 100%;
         height: 100%;
         overflow-y: scroll;
@@ -83,29 +64,5 @@ export const MainDocumentCardColumn = styled.div`
         flex-direction: column;
         justify-content: center;
         text-align: justify;
-    }
-`
-
-export const MainDocumentCardExpandButton = styled.button`
-    & {
-        height: 25px;
-        width: 50px;
-        background-color: #555;
-        border: none;
-        border-radius: ${borderRadius};
-        color: white;
-        font-size: 0.8rem;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-    }
-
-    &:hover {
-        background-color: #777;
-    }
-
-    &:active {
-        background-color: #333;
     }
 `
