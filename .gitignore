@@ -25,6 +25,9 @@
 /jsxcode/.env.test.local
 /jsxcode/.env.production.local
 
+/jsxcode/.vscode/
+/jsxcode/src/.DS_Store
+
 /jsxcode/npm-debug.log*
 /jsxcode/yarn-debug.log*
 /jsxcode/yarn-error.log*
